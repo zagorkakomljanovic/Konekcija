@@ -1,0 +1,153 @@
+C:\Users\Control\Documents\Visual Studio 2017\Projects\konekcija\konekcija\bin\Debug\konekcija.exe.config
+C:\Users\Control\Documents\Visual Studio 2017\Projects\konekcija\konekcija\bin\Debug\konekcija.exe
+C:\Users\Control\Documents\Visual Studio 2017\Projects\konekcija\konekcija\bin\Debug\konekcija.pdb
+C:\Users\Control\Documents\Visual Studio 2017\Projects\konekcija\konekcija\obj\Debug\konekcija.Form1.resources
+C:\Users\Control\Documents\Visual Studio 2017\Projects\konekcija\konekcija\obj\Debug\konekcija.Properties.Resources.resources
+C:\Users\Control\Documents\Visual Studio 2017\Projects\konekcija\konekcija\obj\Debug\konekcija.csproj.GenerateResource.Cache
+C:\Users\Control\Documents\Visual Studio 2017\Projects\konekcija\konekcija\obj\Debug\konekcija.exe
+C:\Users\Control\Documents\Visual Studio 2017\Projects\konekcija\konekcija\obj\Debug\konekcija.pdb
+C:\Users\Control\Documents\Visual Studio 2017\Projects\konekcija\konekcija\obj\Debug\konekcija.csprojResolveAssemblyReference.cache
+C:\Users\Control 2\Documents\Visual Studio 2017\Projects\project1\konekcija\bin\Debug\konekcija.exe.config
+C:\Users\Control 2\Documents\Visual Studio 2017\Projects\project1\konekcija\bin\Debug\konekcija.exe
+C:\Users\Control 2\Documents\Visual Studio 2017\Projects\project1\konekcija\bin\Debug\konekcija.pdb
+C:\Users\Control 2\Documents\Visual Studio 2017\Projects\project1\konekcija\obj\Debug\konekcija.csprojAssemblyReference.cache
+C:\Users\Control 2\Documents\Visual Studio 2017\Projects\project1\konekcija\obj\Debug\konekcija.Form1.resources
+C:\Users\Control 2\Documents\Visual Studio 2017\Projects\project1\konekcija\obj\Debug\konekcija.Properties.Resources.resources
+C:\Users\Control 2\Documents\Visual Studio 2017\Projects\project1\konekcija\obj\Debug\konekcija.csproj.GenerateResource.cache
+C:\Users\Control 2\Documents\Visual Studio 2017\Projects\project1\konekcija\obj\Debug\konekcija.csproj.CoreCompileInputs.cache
+C:\Users\Control 2\Documents\Visual Studio 2017\Projects\project1\konekcija\obj\Debug\konekcija.exe
+C:\Users\Control 2\Documents\Visual Studio 2017\Projects\project1\konekcija\obj\Debug\konekcija.pdb
+C:\Users\Control 2\Documents\Visual Studio 2017\Projects\project1\konekcija\bin\Debug\EntityFramework.dll
+C:\Users\Control 2\Documents\Visual Studio 2017\Projects\project1\konekcija\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Control 2\Documents\Visual Studio 2017\Projects\project1\konekcija\bin\Debug\EntityFramework.xml
+C:\Users\Control 2\Documents\Visual Studio 2017\Projects\project1\konekcija\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Control 2\Documents\Visual Studio 2017\Projects\project1\konekcija\obj\Debug\konekcija.csproj.CopyComplete
+C:\Users\Control 2\Documents\Visual Studio 2017\Projects\project1\konekcija\obj\Debug\konekcija.Form2.resources
+C:\Users\Control 2\Documents\GitHub\novo\konekcija\bin\Debug\konekcija.exe.config
+C:\Users\Control 2\Documents\GitHub\novo\konekcija\bin\Debug\konekcija.exe
+C:\Users\Control 2\Documents\GitHub\novo\konekcija\bin\Debug\konekcija.pdb
+C:\Users\Control 2\Documents\GitHub\novo\konekcija\bin\Debug\EntityFramework.dll
+C:\Users\Control 2\Documents\GitHub\novo\konekcija\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Control 2\Documents\GitHub\novo\konekcija\bin\Debug\EntityFramework.xml
+C:\Users\Control 2\Documents\GitHub\novo\konekcija\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Control 2\Documents\GitHub\novo\konekcija\obj\Debug\konekcija.csprojAssemblyReference.cache
+C:\Users\Control 2\Documents\GitHub\novo\konekcija\obj\Debug\konekcija.Form1.resources
+C:\Users\Control 2\Documents\GitHub\novo\konekcija\obj\Debug\konekcija.Form2.resources
+C:\Users\Control 2\Documents\GitHub\novo\konekcija\obj\Debug\konekcija.Properties.Resources.resources
+C:\Users\Control 2\Documents\GitHub\novo\konekcija\obj\Debug\konekcija.csproj.GenerateResource.cache
+C:\Users\Control 2\Documents\GitHub\novo\konekcija\obj\Debug\konekcija.csproj.CoreCompileInputs.cache
+C:\Users\Control 2\Documents\GitHub\novo\konekcija\obj\Debug\konekcija.csproj.CopyComplete
+C:\Users\Control 2\Documents\GitHub\novo\konekcija\obj\Debug\konekcija.exe
+C:\Users\Control 2\Documents\GitHub\novo\konekcija\obj\Debug\konekcija.pdb
+C:\Users\Control\Desktop\project\project1\konekcija\bin\Debug\konekcija.exe.config
+C:\Users\Control\Desktop\project\project1\konekcija\bin\Debug\konekcija.exe
+C:\Users\Control\Desktop\project\project1\konekcija\bin\Debug\konekcija.pdb
+C:\Users\Control\Desktop\project\project1\konekcija\bin\Debug\EntityFramework.dll
+C:\Users\Control\Desktop\project\project1\konekcija\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Control\Desktop\project\project1\konekcija\bin\Debug\EntityFramework.xml
+C:\Users\Control\Desktop\project\project1\konekcija\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Control\Desktop\project\project1\konekcija\obj\Debug\konekcija.csprojResolveAssemblyReference.cache
+C:\Users\Control\Desktop\project\project1\konekcija\obj\Debug\konekcija.Form1.resources
+C:\Users\Control\Desktop\project\project1\konekcija\obj\Debug\konekcija.Form2.resources
+C:\Users\Control\Desktop\project\project1\konekcija\obj\Debug\konekcija.Properties.Resources.resources
+C:\Users\Control\Desktop\project\project1\konekcija\obj\Debug\konekcija.csproj.GenerateResource.Cache
+C:\Users\Control\Desktop\project\project1\konekcija\obj\Debug\konekcija.exe
+C:\Users\Control\Desktop\project\project1\konekcija\obj\Debug\konekcija.pdb
+C:\Users\Control\Desktop\project\project1\konekcija\obj\Debug\konekcija.Form3.resources
+C:\Users\Control 2\Documents\GitHub\project1-zagorka\konekcija\obj\Debug\konekcija.csprojAssemblyReference.cache
+C:\Users\Control 2\Documents\GitHub\project1-zagorka\konekcija\obj\Debug\konekcija.Properties.Resources.resources
+C:\Users\Control 2\Documents\GitHub\project1-zagorka\konekcija\obj\Debug\konekcija.csproj.GenerateResource.cache
+C:\Users\Control 2\Documents\GitHub\project1-zagorka\konekcija\obj\Debug\konekcija.csproj.CoreCompileInputs.cache
+C:\Users\Control 2\Documents\GitHub\project1-zagorka\konekcija\obj\Debug\konekcija.exe
+C:\Users\Control 2\Documents\GitHub\project1-zagorka\konekcija\obj\Debug\konekcija.pdb
+C:\Users\Control 2\Documents\GitHub\project1-zagorka\konekcija\bin\Debug\konekcija.exe.config
+C:\Users\Control 2\Documents\GitHub\project1-zagorka\konekcija\bin\Debug\konekcija.exe
+C:\Users\Control 2\Documents\GitHub\project1-zagorka\konekcija\bin\Debug\konekcija.pdb
+C:\Users\Control 2\Documents\GitHub\project1-zagorka\konekcija\bin\Debug\EntityFramework.dll
+C:\Users\Control 2\Documents\GitHub\project1-zagorka\konekcija\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Control 2\Documents\GitHub\project1-zagorka\konekcija\bin\Debug\EntityFramework.xml
+C:\Users\Control 2\Documents\GitHub\project1-zagorka\konekcija\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Control 2\Documents\GitHub\project1-zagorka\konekcija\obj\Debug\konekcija.csproj.CopyComplete
+C:\Users\Control 2\Documents\GitHub\project1-zagorka\konekcija\obj\Debug\konekcija.frmEXCEPTION.resources
+C:\Users\Control 2\Documents\GitHub\project1-zagorka\konekcija\obj\Debug\konekcija.frmCARDHOLDER.resources
+C:\Users\Control 2\Documents\GitHub\project1-zagorka\konekcija\obj\Debug\konekcija.frmHOLIDAY.resources
+C:\Users\Control 2\Documents\GitHub\project1-zagorka\konekcija\obj\Debug\konekcija.frmMAIN.resources
+C:\Users\Control 2\Documents\GitHub\project1-zagorka\Misko\konekcija\obj\Debug\konekcija.frmMAIN.resources
+C:\Users\Control 2\Documents\GitHub\project1-zagorka\Misko\konekcija\obj\Debug\konekcija.frmCARDHOLDER.resources
+C:\Users\Control 2\Documents\GitHub\project1-zagorka\Misko\konekcija\obj\Debug\konekcija.frmHOLIDAY.resources
+C:\Users\Control 2\Documents\GitHub\project1-zagorka\Misko\konekcija\obj\Debug\konekcija.Properties.Resources.resources
+C:\Users\Control 2\Documents\GitHub\project1-zagorka\Misko\konekcija\obj\Debug\konekcija.csproj.GenerateResource.cache
+C:\Users\Control 2\Documents\GitHub\project1-zagorka\Misko\konekcija\obj\Debug\konekcija.csproj.CoreCompileInputs.cache
+C:\Users\Control 2\Documents\GitHub\project1-zagorka\Misko\konekcija\bin\Debug\konekcija.exe.config
+C:\Users\Control 2\Documents\GitHub\project1-zagorka\Misko\konekcija\bin\Debug\konekcija.exe
+C:\Users\Control 2\Documents\GitHub\project1-zagorka\Misko\konekcija\bin\Debug\konekcija.pdb
+C:\Users\Control 2\Documents\GitHub\project1-zagorka\Misko\konekcija\bin\Debug\EntityFramework.dll
+C:\Users\Control 2\Documents\GitHub\project1-zagorka\Misko\konekcija\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Control 2\Documents\GitHub\project1-zagorka\Misko\konekcija\bin\Debug\EntityFramework.xml
+C:\Users\Control 2\Documents\GitHub\project1-zagorka\Misko\konekcija\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Control 2\Documents\GitHub\project1-zagorka\Misko\konekcija\obj\Debug\konekcija.csproj.CopyComplete
+C:\Users\Control 2\Documents\GitHub\project1-zagorka\Misko\konekcija\obj\Debug\konekcija.exe
+C:\Users\Control 2\Documents\GitHub\project1-zagorka\Misko\konekcija\obj\Debug\konekcija.pdb
+C:\Users\Control 2\Documents\GitHub\project1-zagorka\Misko\konekcija\obj\Debug\konekcija.frmLOGEXCEPTION.resources
+C:\Users\Control 2\Documents\GitHub\project1-zagorka\Misko\konekcija\obj\Debug\konekcija.frmNONWORKINGDAYS.resources
+C:\Users\Control 2\Documents\GitHub\project1-zagorka\Misko\konekcija\obj\Debug\konekcija.frmSHIFT.resources
+C:\Users\Control 2\Desktop\New folder\Misko-2ea70e814de052fdfe972cd82a42ee04e4abd849\konekcija\bin\Debug\konekcija.exe.config
+C:\Users\Control 2\Desktop\New folder\Misko-2ea70e814de052fdfe972cd82a42ee04e4abd849\konekcija\bin\Debug\konekcija.exe
+C:\Users\Control 2\Desktop\New folder\Misko-2ea70e814de052fdfe972cd82a42ee04e4abd849\konekcija\bin\Debug\konekcija.pdb
+C:\Users\Control 2\Desktop\New folder\Misko-2ea70e814de052fdfe972cd82a42ee04e4abd849\konekcija\bin\Debug\EntityFramework.dll
+C:\Users\Control 2\Desktop\New folder\Misko-2ea70e814de052fdfe972cd82a42ee04e4abd849\konekcija\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Control 2\Desktop\New folder\Misko-2ea70e814de052fdfe972cd82a42ee04e4abd849\konekcija\bin\Debug\EntityFramework.xml
+C:\Users\Control 2\Desktop\New folder\Misko-2ea70e814de052fdfe972cd82a42ee04e4abd849\konekcija\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Control 2\Desktop\New folder\Misko-2ea70e814de052fdfe972cd82a42ee04e4abd849\konekcija\obj\Debug\konekcija.csprojAssemblyReference.cache
+C:\Users\Control 2\Desktop\New folder\Misko-2ea70e814de052fdfe972cd82a42ee04e4abd849\konekcija\obj\Debug\konekcija.frmSHIFT.resources
+C:\Users\Control 2\Desktop\New folder\Misko-2ea70e814de052fdfe972cd82a42ee04e4abd849\konekcija\obj\Debug\konekcija.frmNONWORKINGDAYS.resources
+C:\Users\Control 2\Desktop\New folder\Misko-2ea70e814de052fdfe972cd82a42ee04e4abd849\konekcija\obj\Debug\konekcija.frmMAIN.resources
+C:\Users\Control 2\Desktop\New folder\Misko-2ea70e814de052fdfe972cd82a42ee04e4abd849\konekcija\obj\Debug\konekcija.frmLOGEXCEPTION.resources
+C:\Users\Control 2\Desktop\New folder\Misko-2ea70e814de052fdfe972cd82a42ee04e4abd849\konekcija\obj\Debug\konekcija.frmCARDHOLDER.resources
+C:\Users\Control 2\Desktop\New folder\Misko-2ea70e814de052fdfe972cd82a42ee04e4abd849\konekcija\obj\Debug\konekcija.frmHOLIDAY.resources
+C:\Users\Control 2\Desktop\New folder\Misko-2ea70e814de052fdfe972cd82a42ee04e4abd849\konekcija\obj\Debug\konekcija.Properties.Resources.resources
+C:\Users\Control 2\Desktop\New folder\Misko-2ea70e814de052fdfe972cd82a42ee04e4abd849\konekcija\obj\Debug\konekcija.csproj.GenerateResource.cache
+C:\Users\Control 2\Desktop\New folder\Misko-2ea70e814de052fdfe972cd82a42ee04e4abd849\konekcija\obj\Debug\konekcija.csproj.CoreCompileInputs.cache
+C:\Users\Control 2\Desktop\New folder\Misko-2ea70e814de052fdfe972cd82a42ee04e4abd849\konekcija\obj\Debug\konekcija.csproj.CopyComplete
+C:\Users\Control 2\Desktop\New folder\Misko-2ea70e814de052fdfe972cd82a42ee04e4abd849\konekcija\obj\Debug\konekcija.exe
+C:\Users\Control 2\Desktop\New folder\Misko-2ea70e814de052fdfe972cd82a42ee04e4abd849\konekcija\obj\Debug\konekcija.pdb
+C:\Users\Control 2\Desktop\Misko\konekcija\obj\Debug\konekcija.csprojAssemblyReference.cache
+C:\Users\Control 2\Desktop\Misko\konekcija\obj\Debug\konekcija.frmSHIFT.resources
+C:\Users\Control 2\Desktop\Misko\konekcija\obj\Debug\konekcija.frmNONWORKINGDAYS.resources
+C:\Users\Control 2\Desktop\Misko\konekcija\obj\Debug\konekcija.frmMAIN.resources
+C:\Users\Control 2\Desktop\Misko\konekcija\obj\Debug\konekcija.frmLOGEXCEPTION.resources
+C:\Users\Control 2\Desktop\Misko\konekcija\obj\Debug\konekcija.frmCARDHOLDER.resources
+C:\Users\Control 2\Desktop\Misko\konekcija\obj\Debug\konekcija.frmHOLIDAY.resources
+C:\Users\Control 2\Desktop\Misko\konekcija\obj\Debug\konekcija.Properties.Resources.resources
+C:\Users\Control 2\Desktop\Misko\konekcija\obj\Debug\konekcija.csproj.GenerateResource.cache
+C:\Users\Control 2\Desktop\Misko\konekcija\obj\Debug\konekcija.csproj.CoreCompileInputs.cache
+C:\Users\Control 2\Desktop\Misko\konekcija\obj\Debug\konekcija.exe
+C:\Users\Control 2\Desktop\Misko\konekcija\obj\Debug\konekcija.pdb
+C:\Users\Control 2\Desktop\Misko\konekcija\bin\Debug\konekcija.exe.config
+C:\Users\Control 2\Desktop\Misko\konekcija\bin\Debug\konekcija.exe
+C:\Users\Control 2\Desktop\Misko\konekcija\bin\Debug\konekcija.pdb
+C:\Users\Control 2\Desktop\Misko\konekcija\bin\Debug\EntityFramework.dll
+C:\Users\Control 2\Desktop\Misko\konekcija\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Control 2\Desktop\Misko\konekcija\bin\Debug\EntityFramework.xml
+C:\Users\Control 2\Desktop\Misko\konekcija\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Control 2\Desktop\Misko\konekcija\obj\Debug\konekcija.csproj.CopyComplete
+C:\Users\Control 2\Desktop\Misko frmSHIFT - Final\konekcija\bin\Debug\konekcija.exe.config
+C:\Users\Control 2\Desktop\Misko frmSHIFT - Final\konekcija\bin\Debug\konekcija.exe
+C:\Users\Control 2\Desktop\Misko frmSHIFT - Final\konekcija\bin\Debug\konekcija.pdb
+C:\Users\Control 2\Desktop\Misko frmSHIFT - Final\konekcija\bin\Debug\EntityFramework.dll
+C:\Users\Control 2\Desktop\Misko frmSHIFT - Final\konekcija\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Control 2\Desktop\Misko frmSHIFT - Final\konekcija\bin\Debug\EntityFramework.xml
+C:\Users\Control 2\Desktop\Misko frmSHIFT - Final\konekcija\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Control 2\Desktop\Misko frmSHIFT - Final\konekcija\obj\Debug\konekcija.csprojAssemblyReference.cache
+C:\Users\Control 2\Desktop\Misko frmSHIFT - Final\konekcija\obj\Debug\konekcija.frmSHIFT.resources
+C:\Users\Control 2\Desktop\Misko frmSHIFT - Final\konekcija\obj\Debug\konekcija.frmNONWORKINGDAYS.resources
+C:\Users\Control 2\Desktop\Misko frmSHIFT - Final\konekcija\obj\Debug\konekcija.frmMAIN.resources
+C:\Users\Control 2\Desktop\Misko frmSHIFT - Final\konekcija\obj\Debug\konekcija.frmLOGEXCEPTION.resources
+C:\Users\Control 2\Desktop\Misko frmSHIFT - Final\konekcija\obj\Debug\konekcija.frmCARDHOLDER.resources
+C:\Users\Control 2\Desktop\Misko frmSHIFT - Final\konekcija\obj\Debug\konekcija.frmHOLIDAY.resources
+C:\Users\Control 2\Desktop\Misko frmSHIFT - Final\konekcija\obj\Debug\konekcija.Properties.Resources.resources
+C:\Users\Control 2\Desktop\Misko frmSHIFT - Final\konekcija\obj\Debug\konekcija.csproj.GenerateResource.cache
+C:\Users\Control 2\Desktop\Misko frmSHIFT - Final\konekcija\obj\Debug\konekcija.csproj.CoreCompileInputs.cache
+C:\Users\Control 2\Desktop\Misko frmSHIFT - Final\konekcija\obj\Debug\konekcija.csproj.CopyComplete
+C:\Users\Control 2\Desktop\Misko frmSHIFT - Final\konekcija\obj\Debug\konekcija.exe
+C:\Users\Control 2\Desktop\Misko frmSHIFT - Final\konekcija\obj\Debug\konekcija.pdb

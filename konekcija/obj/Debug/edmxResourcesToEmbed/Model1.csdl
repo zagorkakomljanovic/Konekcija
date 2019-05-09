@@ -1,0 +1,232 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MojaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="MojaEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="AccessLogs" EntityType="MojaModel.AccessLog" />
+    <EntitySet Name="Cards" EntityType="MojaModel.Card" />
+    <EntitySet Name="Cardholders" EntityType="MojaModel.Cardholder" />
+    <EntitySet Name="CardholderShifts" EntityType="MojaModel.CardholderShift" />
+    <EntitySet Name="Holidays" EntityType="MojaModel.Holiday" />
+    <EntitySet Name="LogExceptions" EntityType="MojaModel.LogException" />
+    <EntitySet Name="NonWorkingDays" EntityType="MojaModel.NonWorkingDay" />
+    <EntitySet Name="Shifts" EntityType="MojaModel.Shift" />
+    <AssociationSet Name="FK_AccessLog_Cardholder" Association="MojaModel.FK_AccessLog_Cardholder">
+      <End Role="Cardholder" EntitySet="Cardholders" />
+      <End Role="AccessLog" EntitySet="AccessLogs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Card_Cardholder" Association="MojaModel.FK_Card_Cardholder">
+      <End Role="Cardholder" EntitySet="Cardholders" />
+      <End Role="Card" EntitySet="Cards" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CardholderShift_Cardholder" Association="MojaModel.FK_CardholderShift_Cardholder">
+      <End Role="Cardholder" EntitySet="Cardholders" />
+      <End Role="CardholderShift" EntitySet="CardholderShifts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Exception_Cardholder" Association="MojaModel.FK_Exception_Cardholder">
+      <End Role="Cardholder" EntitySet="Cardholders" />
+      <End Role="LogException" EntitySet="LogExceptions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Holiday_Cardholder" Association="MojaModel.FK_Holiday_Cardholder">
+      <End Role="Cardholder" EntitySet="Cardholders" />
+      <End Role="Holiday" EntitySet="Holidays" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NonWorkingDays_Cardholder" Association="MojaModel.FK_NonWorkingDays_Cardholder">
+      <End Role="Cardholder" EntitySet="Cardholders" />
+      <End Role="NonWorkingDay" EntitySet="NonWorkingDays" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CardholderShift_Shift" Association="MojaModel.FK_CardholderShift_Shift">
+      <End Role="Shift" EntitySet="Shifts" />
+      <End Role="CardholderShift" EntitySet="CardholderShifts" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="AccessLog">
+    <Key>
+      <PropertyRef Name="LogID" />
+    </Key>
+    <Property Name="LogID" Type="Int32" Nullable="false" />
+    <Property Name="CardCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CardType" Type="Int32" />
+    <Property Name="ControllerID" Type="Int32" />
+    <Property Name="Direction" Type="Int32" />
+    <Property Name="LocalTime" Type="DateTime" Precision="3" />
+    <Property Name="CardholderID" Type="Int32" />
+    <NavigationProperty Name="Cardholder" Relationship="MojaModel.FK_AccessLog_Cardholder" FromRole="AccessLog" ToRole="Cardholder" />
+  </EntityType>
+  <EntityType Name="Card">
+    <Key>
+      <PropertyRef Name="CardID" />
+    </Key>
+    <Property Name="CardID" Type="Int32" Nullable="false" />
+    <Property Name="CardNo" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+    <Property Name="CardNoIntCode" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="CardholderID" Type="Int32" />
+    <NavigationProperty Name="Cardholder" Relationship="MojaModel.FK_Card_Cardholder" FromRole="Card" ToRole="Cardholder" />
+  </EntityType>
+  <EntityType Name="Cardholder">
+    <Key>
+      <PropertyRef Name="CardholderID" />
+    </Key>
+    <Property Name="CardholderID" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="FirstName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Gender" Type="Boolean" />
+    <NavigationProperty Name="AccessLogs" Relationship="MojaModel.FK_AccessLog_Cardholder" FromRole="Cardholder" ToRole="AccessLog" />
+    <NavigationProperty Name="Cards" Relationship="MojaModel.FK_Card_Cardholder" FromRole="Cardholder" ToRole="Card" />
+    <NavigationProperty Name="CardholderShifts" Relationship="MojaModel.FK_CardholderShift_Cardholder" FromRole="Cardholder" ToRole="CardholderShift" />
+    <NavigationProperty Name="LogExceptions" Relationship="MojaModel.FK_Exception_Cardholder" FromRole="Cardholder" ToRole="LogException" />
+    <NavigationProperty Name="Holidays" Relationship="MojaModel.FK_Holiday_Cardholder" FromRole="Cardholder" ToRole="Holiday" />
+    <NavigationProperty Name="NonWorkingDays" Relationship="MojaModel.FK_NonWorkingDays_Cardholder" FromRole="Cardholder" ToRole="NonWorkingDay" />
+  </EntityType>
+  <EntityType Name="CardholderShift">
+    <Key>
+      <PropertyRef Name="CardholderShiftID" />
+    </Key>
+    <Property Name="CardholderShiftID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CardholderID" Type="Int32" Nullable="false" />
+    <Property Name="ShiftID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Cardholder" Relationship="MojaModel.FK_CardholderShift_Cardholder" FromRole="CardholderShift" ToRole="Cardholder" />
+    <NavigationProperty Name="Shift" Relationship="MojaModel.FK_CardholderShift_Shift" FromRole="CardholderShift" ToRole="Shift" />
+  </EntityType>
+  <EntityType Name="Holiday">
+    <Key>
+      <PropertyRef Name="HolidayID" />
+    </Key>
+    <Property Name="HolidayID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LeaveDate" Type="DateTime" Precision="0" />
+    <Property Name="ReturnDate" Type="DateTime" Precision="0" />
+    <Property Name="NumberOfDays" Type="Int32" />
+    <Property Name="CardholderID" Type="Int32" />
+    <NavigationProperty Name="Cardholder" Relationship="MojaModel.FK_Holiday_Cardholder" FromRole="Holiday" ToRole="Cardholder" />
+  </EntityType>
+  <EntityType Name="LogException">
+    <Key>
+      <PropertyRef Name="ExceptionID" />
+    </Key>
+    <Property Name="ExceptionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CardholderID" Type="Int32" />
+    <Property Name="Worktime" Type="Time" Precision="7" />
+    <Property Name="ExcIN_OUT" Type="Boolean" />
+    <Property Name="Date" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Cardholder" Relationship="MojaModel.FK_Exception_Cardholder" FromRole="LogException" ToRole="Cardholder" />
+  </EntityType>
+  <EntityType Name="NonWorkingDay">
+    <Key>
+      <PropertyRef Name="Non_working_daysID" />
+    </Key>
+    <Property Name="Non_working_daysID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CardholderID" Type="Int32" Nullable="false" />
+    <Property Name="TotalNWD" Type="Int32" />
+    <NavigationProperty Name="Cardholder" Relationship="MojaModel.FK_NonWorkingDays_Cardholder" FromRole="NonWorkingDay" ToRole="Cardholder" />
+  </EntityType>
+  <EntityType Name="Shift">
+    <Key>
+      <PropertyRef Name="ShiftID" />
+    </Key>
+    <Property Name="ShiftID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ShiftName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="ShiftMonday" Type="Boolean" Nullable="false" />
+    <Property Name="ShiftTuesday" Type="Boolean" Nullable="false" />
+    <Property Name="ShiftWednesday" Type="Boolean" Nullable="false" />
+    <Property Name="ShiftThuersday" Type="Boolean" Nullable="false" />
+    <Property Name="ShiftFriday" Type="Boolean" Nullable="false" />
+    <Property Name="ShiftSaturday" Type="Boolean" Nullable="false" />
+    <Property Name="ShiftSunday" Type="Boolean" Nullable="false" />
+    <Property Name="WorkingHours" Type="Int32" Nullable="false" />
+    <Property Name="BreakTime" Type="Decimal" Nullable="false" Precision="2" Scale="1" />
+    <NavigationProperty Name="CardholderShifts" Relationship="MojaModel.FK_CardholderShift_Shift" FromRole="Shift" ToRole="CardholderShift" />
+  </EntityType>
+  <Association Name="FK_AccessLog_Cardholder">
+    <End Type="MojaModel.Cardholder" Role="Cardholder" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="MojaModel.AccessLog" Role="AccessLog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cardholder">
+        <PropertyRef Name="CardholderID" />
+      </Principal>
+      <Dependent Role="AccessLog">
+        <PropertyRef Name="CardholderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Card_Cardholder">
+    <End Type="MojaModel.Cardholder" Role="Cardholder" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="MojaModel.Card" Role="Card" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cardholder">
+        <PropertyRef Name="CardholderID" />
+      </Principal>
+      <Dependent Role="Card">
+        <PropertyRef Name="CardholderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CardholderShift_Cardholder">
+    <End Type="MojaModel.Cardholder" Role="Cardholder" Multiplicity="1" />
+    <End Type="MojaModel.CardholderShift" Role="CardholderShift" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cardholder">
+        <PropertyRef Name="CardholderID" />
+      </Principal>
+      <Dependent Role="CardholderShift">
+        <PropertyRef Name="CardholderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Exception_Cardholder">
+    <End Type="MojaModel.Cardholder" Role="Cardholder" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="MojaModel.LogException" Role="LogException" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cardholder">
+        <PropertyRef Name="CardholderID" />
+      </Principal>
+      <Dependent Role="LogException">
+        <PropertyRef Name="CardholderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Holiday_Cardholder">
+    <End Type="MojaModel.Cardholder" Role="Cardholder" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="MojaModel.Holiday" Role="Holiday" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cardholder">
+        <PropertyRef Name="CardholderID" />
+      </Principal>
+      <Dependent Role="Holiday">
+        <PropertyRef Name="CardholderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NonWorkingDays_Cardholder">
+    <End Type="MojaModel.Cardholder" Role="Cardholder" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="MojaModel.NonWorkingDay" Role="NonWorkingDay" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cardholder">
+        <PropertyRef Name="CardholderID" />
+      </Principal>
+      <Dependent Role="NonWorkingDay">
+        <PropertyRef Name="CardholderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CardholderShift_Shift">
+    <End Type="MojaModel.Shift" Role="Shift" Multiplicity="1" />
+    <End Type="MojaModel.CardholderShift" Role="CardholderShift" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Shift">
+        <PropertyRef Name="ShiftID" />
+      </Principal>
+      <Dependent Role="CardholderShift">
+        <PropertyRef Name="ShiftID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
