@@ -5,26 +5,27 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="dac004a7e3654cf4923d33052e556745" Name="Diagram1" ZoomLevel="74">
-        <EntityTypeShape EntityType="MojaModel.AccessLog" Width="1.5" PointX="3" PointY="3" />
-        <EntityTypeShape EntityType="MojaModel.Card" Width="1.5" PointX="3" PointY="12" />
-        <EntityTypeShape EntityType="MojaModel.Cardholder" Width="1.5" PointX="0.75" PointY="8.25" />
-        <EntityTypeShape EntityType="MojaModel.CardholderShift" Width="1.5" PointX="4.125" PointY="9" />
-        <EntityTypeShape EntityType="MojaModel.Holiday" Width="1.5" PointX="3" PointY="6.375" />
-        <EntityTypeShape EntityType="MojaModel.LogException" Width="1.5" PointX="3" PointY="17.25" />
-        <EntityTypeShape EntityType="MojaModel.NonWorkingDay" Width="1.5" PointX="3" PointY="14.75" />
-        <EntityTypeShape EntityType="MojaModel.Shift" Width="1.5" PointX="7" PointY="8.75" />
+        <EntityTypeShape EntityType="MojaModel.AccessLog" Width="1.5" PointX="3" PointY="22.125" />
+        <EntityTypeShape EntityType="MojaModel.BreakTime" Width="1.5" PointX="3" PointY="13.375" />
+        <EntityTypeShape EntityType="MojaModel.Card" Width="1.5" PointX="3" PointY="10.625" />
+        <EntityTypeShape EntityType="MojaModel.Cardholder" Width="1.5" PointX="0.75" PointY="14.5" />
+        <EntityTypeShape EntityType="MojaModel.CardholderShift" Width="1.5" PointX="6" PointY="15.375" />
+        <EntityTypeShape EntityType="MojaModel.Holiday" Width="1.5" PointX="3" PointY="25.5" />
+        <EntityTypeShape EntityType="MojaModel.LogException" Width="1.5" PointX="3" PointY="7.75" />
+        <EntityTypeShape EntityType="MojaModel.LogNum" Width="1.5" PointX="3" PointY="28.375" />
+        <EntityTypeShape EntityType="MojaModel.NonWorkingDay" Width="1.5" PointX="3" PointY="19.625" />
+        <EntityTypeShape EntityType="MojaModel.Shift" Width="1.5" PointX="3.75" PointY="0.75" />
+        <EntityTypeShape EntityType="MojaModel.sysdiagram" Width="1.5" PointX="5.75" PointY="2.25" />
+        <EntityTypeShape EntityType="MojaModel.TotalTime" Width="1.5" PointX="3" PointY="5" />
         <AssociationConnector Association="MojaModel.FK_AccessLog_Cardholder" />
+        <AssociationConnector Association="MojaModel.FK_BreakTime_Cardholder" />
         <AssociationConnector Association="MojaModel.FK_Card_Cardholder" />
         <AssociationConnector Association="MojaModel.FK_CardholderShift_Cardholder" />
-        <AssociationConnector Association="MojaModel.FK_Exception_Cardholder" />
-        <AssociationConnector Association="MojaModel.FK_Holiday_Cardholder" ManuallyRouted="true" >
-          <ConnectorPoint PointX="2.25" PointY="8.6586923740146382" />
-          <ConnectorPoint PointX="2.745" PointY="8.6586923740146382" />
-          <ConnectorPoint PointX="2.745" PointY="8.6558716406684546" />
-          <ConnectorPoint PointX="3.75" PointY="8.6558716406684546" />
-          <ConnectorPoint PointX="3.75" PointY="8.547587890625" />
-        </AssociationConnector>
+        <AssociationConnector Association="MojaModel.FK_Holiday_Cardholder" />
+        <AssociationConnector Association="MojaModel.FK_LogException_Cardholder" />
+        <AssociationConnector Association="MojaModel.FK_LogNum_Cardholder" />
         <AssociationConnector Association="MojaModel.FK_NonWorkingDays_Cardholder" />
+        <AssociationConnector Association="MojaModel.FK_TotalTime_Cardholder" />
         <AssociationConnector Association="MojaModel.FK_CardholderShift_Shift" />
       </Diagram>
     </edmx:Diagrams>

@@ -20,11 +20,14 @@ using System.Xml.Serialization;
 #region EDM Relationship Metadata
 
 [assembly: EdmRelationshipAttribute("MojaModel", "FK_AccessLog_Cardholder", "Cardholder", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(konekcija.Cardholder), "AccessLog", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(konekcija.AccessLog), true)]
+[assembly: EdmRelationshipAttribute("MojaModel", "FK_BreakTime_Cardholder", "Cardholder", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(konekcija.Cardholder), "BreakTime", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(konekcija.BreakTime), true)]
 [assembly: EdmRelationshipAttribute("MojaModel", "FK_Card_Cardholder", "Cardholder", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(konekcija.Cardholder), "Card", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(konekcija.Card), true)]
 [assembly: EdmRelationshipAttribute("MojaModel", "FK_CardholderShift_Cardholder", "Cardholder", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(konekcija.Cardholder), "CardholderShift", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(konekcija.CardholderShift), true)]
-[assembly: EdmRelationshipAttribute("MojaModel", "FK_Exception_Cardholder", "Cardholder", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(konekcija.Cardholder), "LogException", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(konekcija.LogException), true)]
 [assembly: EdmRelationshipAttribute("MojaModel", "FK_Holiday_Cardholder", "Cardholder", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(konekcija.Cardholder), "Holiday", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(konekcija.Holiday), true)]
-[assembly: EdmRelationshipAttribute("MojaModel", "FK_NonWorkingDays_Cardholder", "Cardholder", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(konekcija.Cardholder), "NonWorkingDay", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(konekcija.NonWorkingDay), true)]
+[assembly: EdmRelationshipAttribute("MojaModel", "FK_LogException_Cardholder", "Cardholder", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(konekcija.Cardholder), "LogException", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(konekcija.LogException), true)]
+[assembly: EdmRelationshipAttribute("MojaModel", "FK_LogNum_Cardholder", "Cardholder", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(konekcija.Cardholder), "LogNum", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(konekcija.LogNum), true)]
+[assembly: EdmRelationshipAttribute("MojaModel", "FK_NonWorkingDays_Cardholder", "Cardholder", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(konekcija.Cardholder), "NonWorkingDay", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(konekcija.NonWorkingDay), true)]
+[assembly: EdmRelationshipAttribute("MojaModel", "FK_TotalTime_Cardholder", "Cardholder", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(konekcija.Cardholder), "TotalTime", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(konekcija.TotalTime), true)]
 [assembly: EdmRelationshipAttribute("MojaModel", "FK_CardholderShift_Shift", "Shift", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(konekcija.Shift), "CardholderShift", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(konekcija.CardholderShift), true)]
 
 #endregion
@@ -92,6 +95,22 @@ namespace konekcija
             }
         }
         private ObjectSet<AccessLog> _AccessLogs;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<BreakTime> BreakTimes
+        {
+            get
+            {
+                if ((_BreakTimes == null))
+                {
+                    _BreakTimes = base.CreateObjectSet<BreakTime>("BreakTimes");
+                }
+                return _BreakTimes;
+            }
+        }
+        private ObjectSet<BreakTime> _BreakTimes;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -176,6 +195,22 @@ namespace konekcija
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
+        public ObjectSet<LogNum> LogNums
+        {
+            get
+            {
+                if ((_LogNums == null))
+                {
+                    _LogNums = base.CreateObjectSet<LogNum>("LogNums");
+                }
+                return _LogNums;
+            }
+        }
+        private ObjectSet<LogNum> _LogNums;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
         public ObjectSet<NonWorkingDay> NonWorkingDays
         {
             get
@@ -204,6 +239,38 @@ namespace konekcija
             }
         }
         private ObjectSet<Shift> _Shifts;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<sysdiagram> sysdiagrams
+        {
+            get
+            {
+                if ((_sysdiagrams == null))
+                {
+                    _sysdiagrams = base.CreateObjectSet<sysdiagram>("sysdiagrams");
+                }
+                return _sysdiagrams;
+            }
+        }
+        private ObjectSet<sysdiagram> _sysdiagrams;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<TotalTime> TotalTimes
+        {
+            get
+            {
+                if ((_TotalTimes == null))
+                {
+                    _TotalTimes = base.CreateObjectSet<TotalTime>("TotalTimes");
+                }
+                return _TotalTimes;
+            }
+        }
+        private ObjectSet<TotalTime> _TotalTimes;
 
         #endregion
 
@@ -215,6 +282,14 @@ namespace konekcija
         public void AddToAccessLogs(AccessLog accessLog)
         {
             base.AddObject("AccessLogs", accessLog);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the BreakTimes EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToBreakTimes(BreakTime breakTime)
+        {
+            base.AddObject("BreakTimes", breakTime);
         }
     
         /// <summary>
@@ -258,6 +333,14 @@ namespace konekcija
         }
     
         /// <summary>
+        /// Deprecated Method for adding a new object to the LogNums EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToLogNums(LogNum logNum)
+        {
+            base.AddObject("LogNums", logNum);
+        }
+    
+        /// <summary>
         /// Deprecated Method for adding a new object to the NonWorkingDays EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToNonWorkingDays(NonWorkingDay nonWorkingDay)
@@ -271,6 +354,22 @@ namespace konekcija
         public void AddToShifts(Shift shift)
         {
             base.AddObject("Shifts", shift);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the sysdiagrams EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddTosysdiagrams(sysdiagram sysdiagram)
+        {
+            base.AddObject("sysdiagrams", sysdiagram);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the TotalTimes EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToTotalTimes(TotalTime totalTime)
+        {
+            base.AddObject("TotalTimes", totalTime);
         }
 
         #endregion
@@ -515,6 +614,272 @@ namespace konekcija
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Cardholder>("MojaModel.FK_AccessLog_Cardholder", "Cardholder", value);
+                }
+            }
+        }
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="MojaModel", Name="BreakTime")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class BreakTime : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new BreakTime object.
+        /// </summary>
+        /// <param name="breakTimeID">Initial value of the BreakTimeID property.</param>
+        public static BreakTime CreateBreakTime(global::System.Int32 breakTimeID)
+        {
+            BreakTime breakTime = new BreakTime();
+            breakTime.BreakTimeID = breakTimeID;
+            return breakTime;
+        }
+
+        #endregion
+
+        #region Simple Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 BreakTimeID
+        {
+            get
+            {
+                return _BreakTimeID;
+            }
+            set
+            {
+                if (_BreakTimeID != value)
+                {
+                    OnBreakTimeIDChanging(value);
+                    ReportPropertyChanging("BreakTimeID");
+                    _BreakTimeID = StructuralObject.SetValidValue(value, "BreakTimeID");
+                    ReportPropertyChanged("BreakTimeID");
+                    OnBreakTimeIDChanged();
+                }
+            }
+        }
+        private global::System.Int32 _BreakTimeID;
+        partial void OnBreakTimeIDChanging(global::System.Int32 value);
+        partial void OnBreakTimeIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> ActivityDate
+        {
+            get
+            {
+                return _ActivityDate;
+            }
+            set
+            {
+                OnActivityDateChanging(value);
+                ReportPropertyChanging("ActivityDate");
+                _ActivityDate = StructuralObject.SetValidValue(value, "ActivityDate");
+                ReportPropertyChanged("ActivityDate");
+                OnActivityDateChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _ActivityDate;
+        partial void OnActivityDateChanging(Nullable<global::System.DateTime> value);
+        partial void OnActivityDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> LogOff
+        {
+            get
+            {
+                return _LogOff;
+            }
+            set
+            {
+                OnLogOffChanging(value);
+                ReportPropertyChanging("LogOff");
+                _LogOff = StructuralObject.SetValidValue(value, "LogOff");
+                ReportPropertyChanged("LogOff");
+                OnLogOffChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _LogOff;
+        partial void OnLogOffChanging(Nullable<global::System.DateTime> value);
+        partial void OnLogOffChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> LogOn
+        {
+            get
+            {
+                return _LogOn;
+            }
+            set
+            {
+                OnLogOnChanging(value);
+                ReportPropertyChanging("LogOn");
+                _LogOn = StructuralObject.SetValidValue(value, "LogOn");
+                ReportPropertyChanged("LogOn");
+                OnLogOnChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _LogOn;
+        partial void OnLogOnChanging(Nullable<global::System.DateTime> value);
+        partial void OnLogOnChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.TimeSpan> BreakTime1
+        {
+            get
+            {
+                return _BreakTime1;
+            }
+            set
+            {
+                OnBreakTime1Changing(value);
+                ReportPropertyChanging("BreakTime1");
+                _BreakTime1 = StructuralObject.SetValidValue(value, "BreakTime1");
+                ReportPropertyChanged("BreakTime1");
+                OnBreakTime1Changed();
+            }
+        }
+        private Nullable<global::System.TimeSpan> _BreakTime1;
+        partial void OnBreakTime1Changing(Nullable<global::System.TimeSpan> value);
+        partial void OnBreakTime1Changed();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> LogNum
+        {
+            get
+            {
+                return _LogNum;
+            }
+            set
+            {
+                OnLogNumChanging(value);
+                ReportPropertyChanging("LogNum");
+                _LogNum = StructuralObject.SetValidValue(value, "LogNum");
+                ReportPropertyChanged("LogNum");
+                OnLogNumChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _LogNum;
+        partial void OnLogNumChanging(Nullable<global::System.Int32> value);
+        partial void OnLogNumChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> SumDirection
+        {
+            get
+            {
+                return _SumDirection;
+            }
+            set
+            {
+                OnSumDirectionChanging(value);
+                ReportPropertyChanging("SumDirection");
+                _SumDirection = StructuralObject.SetValidValue(value, "SumDirection");
+                ReportPropertyChanged("SumDirection");
+                OnSumDirectionChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _SumDirection;
+        partial void OnSumDirectionChanging(Nullable<global::System.Int32> value);
+        partial void OnSumDirectionChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> CardholderID
+        {
+            get
+            {
+                return _CardholderID;
+            }
+            set
+            {
+                OnCardholderIDChanging(value);
+                ReportPropertyChanging("CardholderID");
+                _CardholderID = StructuralObject.SetValidValue(value, "CardholderID");
+                ReportPropertyChanged("CardholderID");
+                OnCardholderIDChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _CardholderID;
+        partial void OnCardholderIDChanging(Nullable<global::System.Int32> value);
+        partial void OnCardholderIDChanged();
+
+        #endregion
+
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("MojaModel", "FK_BreakTime_Cardholder", "Cardholder")]
+        public Cardholder Cardholder
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Cardholder>("MojaModel.FK_BreakTime_Cardholder", "Cardholder").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Cardholder>("MojaModel.FK_BreakTime_Cardholder", "Cardholder").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Cardholder> CardholderReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Cardholder>("MojaModel.FK_BreakTime_Cardholder", "Cardholder");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Cardholder>("MojaModel.FK_BreakTime_Cardholder", "Cardholder", value);
                 }
             }
         }
@@ -873,6 +1238,28 @@ namespace konekcija
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("MojaModel", "FK_BreakTime_Cardholder", "BreakTime")]
+        public EntityCollection<BreakTime> BreakTimes
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<BreakTime>("MojaModel.FK_BreakTime_Cardholder", "BreakTime");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<BreakTime>("MojaModel.FK_BreakTime_Cardholder", "BreakTime", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("MojaModel", "FK_Card_Cardholder", "Card")]
         public EntityCollection<Card> Cards
         {
@@ -917,28 +1304,6 @@ namespace konekcija
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("MojaModel", "FK_Exception_Cardholder", "LogException")]
-        public EntityCollection<LogException> LogExceptions
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<LogException>("MojaModel.FK_Exception_Cardholder", "LogException");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<LogException>("MojaModel.FK_Exception_Cardholder", "LogException", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("MojaModel", "FK_Holiday_Cardholder", "Holiday")]
         public EntityCollection<Holiday> Holidays
         {
@@ -961,6 +1326,50 @@ namespace konekcija
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("MojaModel", "FK_LogException_Cardholder", "LogException")]
+        public EntityCollection<LogException> LogExceptions
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<LogException>("MojaModel.FK_LogException_Cardholder", "LogException");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<LogException>("MojaModel.FK_LogException_Cardholder", "LogException", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("MojaModel", "FK_LogNum_Cardholder", "LogNum")]
+        public EntityCollection<LogNum> LogNums
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<LogNum>("MojaModel.FK_LogNum_Cardholder", "LogNum");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<LogNum>("MojaModel.FK_LogNum_Cardholder", "LogNum", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("MojaModel", "FK_NonWorkingDays_Cardholder", "NonWorkingDay")]
         public EntityCollection<NonWorkingDay> NonWorkingDays
         {
@@ -973,6 +1382,28 @@ namespace konekcija
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<NonWorkingDay>("MojaModel.FK_NonWorkingDays_Cardholder", "NonWorkingDay", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("MojaModel", "FK_TotalTime_Cardholder", "TotalTime")]
+        public EntityCollection<TotalTime> TotalTimes
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<TotalTime>("MojaModel.FK_TotalTime_Cardholder", "TotalTime");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<TotalTime>("MojaModel.FK_TotalTime_Cardholder", "TotalTime", value);
                 }
             }
         }
@@ -1420,31 +1851,7 @@ namespace konekcija
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> CardholderID
-        {
-            get
-            {
-                return _CardholderID;
-            }
-            set
-            {
-                OnCardholderIDChanging(value);
-                ReportPropertyChanging("CardholderID");
-                _CardholderID = StructuralObject.SetValidValue(value, "CardholderID");
-                ReportPropertyChanged("CardholderID");
-                OnCardholderIDChanged();
-            }
-        }
-        private Nullable<global::System.Int32> _CardholderID;
-        partial void OnCardholderIDChanging(Nullable<global::System.Int32> value);
-        partial void OnCardholderIDChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.TimeSpan> Worktime
+        public Nullable<global::System.Int32> Worktime
         {
             get
             {
@@ -1459,9 +1866,33 @@ namespace konekcija
                 OnWorktimeChanged();
             }
         }
-        private Nullable<global::System.TimeSpan> _Worktime;
-        partial void OnWorktimeChanging(Nullable<global::System.TimeSpan> value);
+        private Nullable<global::System.Int32> _Worktime;
+        partial void OnWorktimeChanging(Nullable<global::System.Int32> value);
         partial void OnWorktimeChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> LogExceptionDate
+        {
+            get
+            {
+                return _LogExceptionDate;
+            }
+            set
+            {
+                OnLogExceptionDateChanging(value);
+                ReportPropertyChanging("LogExceptionDate");
+                _LogExceptionDate = StructuralObject.SetValidValue(value, "LogExceptionDate");
+                ReportPropertyChanged("LogExceptionDate");
+                OnLogExceptionDateChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _LogExceptionDate;
+        partial void OnLogExceptionDateChanging(Nullable<global::System.DateTime> value);
+        partial void OnLogExceptionDateChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -1492,24 +1923,24 @@ namespace konekcija
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.DateTime> Date
+        public Nullable<global::System.Int32> CardholderID
         {
             get
             {
-                return _Date;
+                return _CardholderID;
             }
             set
             {
-                OnDateChanging(value);
-                ReportPropertyChanging("Date");
-                _Date = StructuralObject.SetValidValue(value, "Date");
-                ReportPropertyChanged("Date");
-                OnDateChanged();
+                OnCardholderIDChanging(value);
+                ReportPropertyChanging("CardholderID");
+                _CardholderID = StructuralObject.SetValidValue(value, "CardholderID");
+                ReportPropertyChanged("CardholderID");
+                OnCardholderIDChanged();
             }
         }
-        private Nullable<global::System.DateTime> _Date;
-        partial void OnDateChanging(Nullable<global::System.DateTime> value);
-        partial void OnDateChanged();
+        private Nullable<global::System.Int32> _CardholderID;
+        partial void OnCardholderIDChanging(Nullable<global::System.Int32> value);
+        partial void OnCardholderIDChanged();
 
         #endregion
 
@@ -1521,16 +1952,16 @@ namespace konekcija
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("MojaModel", "FK_Exception_Cardholder", "Cardholder")]
+        [EdmRelationshipNavigationPropertyAttribute("MojaModel", "FK_LogException_Cardholder", "Cardholder")]
         public Cardholder Cardholder
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Cardholder>("MojaModel.FK_Exception_Cardholder", "Cardholder").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Cardholder>("MojaModel.FK_LogException_Cardholder", "Cardholder").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Cardholder>("MojaModel.FK_Exception_Cardholder", "Cardholder").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Cardholder>("MojaModel.FK_LogException_Cardholder", "Cardholder").Value = value;
             }
         }
         /// <summary>
@@ -1542,13 +1973,207 @@ namespace konekcija
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Cardholder>("MojaModel.FK_Exception_Cardholder", "Cardholder");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Cardholder>("MojaModel.FK_LogException_Cardholder", "Cardholder");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Cardholder>("MojaModel.FK_Exception_Cardholder", "Cardholder", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Cardholder>("MojaModel.FK_LogException_Cardholder", "Cardholder", value);
+                }
+            }
+        }
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="MojaModel", Name="LogNum")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class LogNum : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new LogNum object.
+        /// </summary>
+        /// <param name="logNumID">Initial value of the LogNumID property.</param>
+        public static LogNum CreateLogNum(global::System.Int32 logNumID)
+        {
+            LogNum logNum = new LogNum();
+            logNum.LogNumID = logNumID;
+            return logNum;
+        }
+
+        #endregion
+
+        #region Simple Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 LogNumID
+        {
+            get
+            {
+                return _LogNumID;
+            }
+            set
+            {
+                if (_LogNumID != value)
+                {
+                    OnLogNumIDChanging(value);
+                    ReportPropertyChanging("LogNumID");
+                    _LogNumID = StructuralObject.SetValidValue(value, "LogNumID");
+                    ReportPropertyChanged("LogNumID");
+                    OnLogNumIDChanged();
+                }
+            }
+        }
+        private global::System.Int32 _LogNumID;
+        partial void OnLogNumIDChanging(global::System.Int32 value);
+        partial void OnLogNumIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> SumDirection
+        {
+            get
+            {
+                return _SumDirection;
+            }
+            set
+            {
+                OnSumDirectionChanging(value);
+                ReportPropertyChanging("SumDirection");
+                _SumDirection = StructuralObject.SetValidValue(value, "SumDirection");
+                ReportPropertyChanged("SumDirection");
+                OnSumDirectionChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _SumDirection;
+        partial void OnSumDirectionChanging(Nullable<global::System.Int32> value);
+        partial void OnSumDirectionChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> LogNum1
+        {
+            get
+            {
+                return _LogNum1;
+            }
+            set
+            {
+                OnLogNum1Changing(value);
+                ReportPropertyChanging("LogNum1");
+                _LogNum1 = StructuralObject.SetValidValue(value, "LogNum1");
+                ReportPropertyChanged("LogNum1");
+                OnLogNum1Changed();
+            }
+        }
+        private Nullable<global::System.Int32> _LogNum1;
+        partial void OnLogNum1Changing(Nullable<global::System.Int32> value);
+        partial void OnLogNum1Changed();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> LogDate
+        {
+            get
+            {
+                return _LogDate;
+            }
+            set
+            {
+                OnLogDateChanging(value);
+                ReportPropertyChanging("LogDate");
+                _LogDate = StructuralObject.SetValidValue(value, "LogDate");
+                ReportPropertyChanged("LogDate");
+                OnLogDateChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _LogDate;
+        partial void OnLogDateChanging(Nullable<global::System.DateTime> value);
+        partial void OnLogDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> CardholderID
+        {
+            get
+            {
+                return _CardholderID;
+            }
+            set
+            {
+                OnCardholderIDChanging(value);
+                ReportPropertyChanging("CardholderID");
+                _CardholderID = StructuralObject.SetValidValue(value, "CardholderID");
+                ReportPropertyChanged("CardholderID");
+                OnCardholderIDChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _CardholderID;
+        partial void OnCardholderIDChanging(Nullable<global::System.Int32> value);
+        partial void OnCardholderIDChanged();
+
+        #endregion
+
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("MojaModel", "FK_LogNum_Cardholder", "Cardholder")]
+        public Cardholder Cardholder
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Cardholder>("MojaModel.FK_LogNum_Cardholder", "Cardholder").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Cardholder>("MojaModel.FK_LogNum_Cardholder", "Cardholder").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Cardholder> CardholderReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Cardholder>("MojaModel.FK_LogNum_Cardholder", "Cardholder");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Cardholder>("MojaModel.FK_LogNum_Cardholder", "Cardholder", value);
                 }
             }
         }
@@ -1571,12 +2196,10 @@ namespace konekcija
         /// Create a new NonWorkingDay object.
         /// </summary>
         /// <param name="non_working_daysID">Initial value of the Non_working_daysID property.</param>
-        /// <param name="cardholderID">Initial value of the CardholderID property.</param>
-        public static NonWorkingDay CreateNonWorkingDay(global::System.Int32 non_working_daysID, global::System.Int32 cardholderID)
+        public static NonWorkingDay CreateNonWorkingDay(global::System.Int32 non_working_daysID)
         {
             NonWorkingDay nonWorkingDay = new NonWorkingDay();
             nonWorkingDay.Non_working_daysID = non_working_daysID;
-            nonWorkingDay.CardholderID = cardholderID;
             return nonWorkingDay;
         }
 
@@ -1614,30 +2237,6 @@ namespace konekcija
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 CardholderID
-        {
-            get
-            {
-                return _CardholderID;
-            }
-            set
-            {
-                OnCardholderIDChanging(value);
-                ReportPropertyChanging("CardholderID");
-                _CardholderID = StructuralObject.SetValidValue(value, "CardholderID");
-                ReportPropertyChanged("CardholderID");
-                OnCardholderIDChanged();
-            }
-        }
-        private global::System.Int32 _CardholderID;
-        partial void OnCardholderIDChanging(global::System.Int32 value);
-        partial void OnCardholderIDChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
         public Nullable<global::System.Int32> TotalNWD
@@ -1658,6 +2257,30 @@ namespace konekcija
         private Nullable<global::System.Int32> _TotalNWD;
         partial void OnTotalNWDChanging(Nullable<global::System.Int32> value);
         partial void OnTotalNWDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> CardholderID
+        {
+            get
+            {
+                return _CardholderID;
+            }
+            set
+            {
+                OnCardholderIDChanging(value);
+                ReportPropertyChanging("CardholderID");
+                _CardholderID = StructuralObject.SetValidValue(value, "CardholderID");
+                ReportPropertyChanged("CardholderID");
+                OnCardholderIDChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _CardholderID;
+        partial void OnCardholderIDChanging(Nullable<global::System.Int32> value);
+        partial void OnCardholderIDChanged();
 
         #endregion
 
@@ -2039,6 +2662,332 @@ namespace konekcija
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<CardholderShift>("MojaModel.FK_CardholderShift_Shift", "CardholderShift", value);
+                }
+            }
+        }
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="MojaModel", Name="sysdiagram")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class sysdiagram : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new sysdiagram object.
+        /// </summary>
+        /// <param name="name">Initial value of the name property.</param>
+        /// <param name="principal_id">Initial value of the principal_id property.</param>
+        /// <param name="diagram_id">Initial value of the diagram_id property.</param>
+        public static sysdiagram Createsysdiagram(global::System.String name, global::System.Int32 principal_id, global::System.Int32 diagram_id)
+        {
+            sysdiagram sysdiagram = new sysdiagram();
+            sysdiagram.name = name;
+            sysdiagram.principal_id = principal_id;
+            sysdiagram.diagram_id = diagram_id;
+            return sysdiagram;
+        }
+
+        #endregion
+
+        #region Simple Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String name
+        {
+            get
+            {
+                return _name;
+            }
+            set
+            {
+                OnnameChanging(value);
+                ReportPropertyChanging("name");
+                _name = StructuralObject.SetValidValue(value, false, "name");
+                ReportPropertyChanged("name");
+                OnnameChanged();
+            }
+        }
+        private global::System.String _name;
+        partial void OnnameChanging(global::System.String value);
+        partial void OnnameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 principal_id
+        {
+            get
+            {
+                return _principal_id;
+            }
+            set
+            {
+                Onprincipal_idChanging(value);
+                ReportPropertyChanging("principal_id");
+                _principal_id = StructuralObject.SetValidValue(value, "principal_id");
+                ReportPropertyChanged("principal_id");
+                Onprincipal_idChanged();
+            }
+        }
+        private global::System.Int32 _principal_id;
+        partial void Onprincipal_idChanging(global::System.Int32 value);
+        partial void Onprincipal_idChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 diagram_id
+        {
+            get
+            {
+                return _diagram_id;
+            }
+            set
+            {
+                if (_diagram_id != value)
+                {
+                    Ondiagram_idChanging(value);
+                    ReportPropertyChanging("diagram_id");
+                    _diagram_id = StructuralObject.SetValidValue(value, "diagram_id");
+                    ReportPropertyChanged("diagram_id");
+                    Ondiagram_idChanged();
+                }
+            }
+        }
+        private global::System.Int32 _diagram_id;
+        partial void Ondiagram_idChanging(global::System.Int32 value);
+        partial void Ondiagram_idChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> version
+        {
+            get
+            {
+                return _version;
+            }
+            set
+            {
+                OnversionChanging(value);
+                ReportPropertyChanging("version");
+                _version = StructuralObject.SetValidValue(value, "version");
+                ReportPropertyChanged("version");
+                OnversionChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _version;
+        partial void OnversionChanging(Nullable<global::System.Int32> value);
+        partial void OnversionChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.Byte[] definition
+        {
+            get
+            {
+                return StructuralObject.GetValidValue(_definition);
+            }
+            set
+            {
+                OndefinitionChanging(value);
+                ReportPropertyChanging("definition");
+                _definition = StructuralObject.SetValidValue(value, true, "definition");
+                ReportPropertyChanged("definition");
+                OndefinitionChanged();
+            }
+        }
+        private global::System.Byte[] _definition;
+        partial void OndefinitionChanging(global::System.Byte[] value);
+        partial void OndefinitionChanged();
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="MojaModel", Name="TotalTime")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class TotalTime : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new TotalTime object.
+        /// </summary>
+        /// <param name="totalTimeID">Initial value of the TotalTimeID property.</param>
+        public static TotalTime CreateTotalTime(global::System.Int32 totalTimeID)
+        {
+            TotalTime totalTime = new TotalTime();
+            totalTime.TotalTimeID = totalTimeID;
+            return totalTime;
+        }
+
+        #endregion
+
+        #region Simple Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 TotalTimeID
+        {
+            get
+            {
+                return _TotalTimeID;
+            }
+            set
+            {
+                if (_TotalTimeID != value)
+                {
+                    OnTotalTimeIDChanging(value);
+                    ReportPropertyChanging("TotalTimeID");
+                    _TotalTimeID = StructuralObject.SetValidValue(value, "TotalTimeID");
+                    ReportPropertyChanged("TotalTimeID");
+                    OnTotalTimeIDChanged();
+                }
+            }
+        }
+        private global::System.Int32 _TotalTimeID;
+        partial void OnTotalTimeIDChanging(global::System.Int32 value);
+        partial void OnTotalTimeIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> ActivityDate
+        {
+            get
+            {
+                return _ActivityDate;
+            }
+            set
+            {
+                OnActivityDateChanging(value);
+                ReportPropertyChanging("ActivityDate");
+                _ActivityDate = StructuralObject.SetValidValue(value, "ActivityDate");
+                ReportPropertyChanged("ActivityDate");
+                OnActivityDateChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _ActivityDate;
+        partial void OnActivityDateChanging(Nullable<global::System.DateTime> value);
+        partial void OnActivityDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.TimeSpan> TotalTime1
+        {
+            get
+            {
+                return _TotalTime1;
+            }
+            set
+            {
+                OnTotalTime1Changing(value);
+                ReportPropertyChanging("TotalTime1");
+                _TotalTime1 = StructuralObject.SetValidValue(value, "TotalTime1");
+                ReportPropertyChanged("TotalTime1");
+                OnTotalTime1Changed();
+            }
+        }
+        private Nullable<global::System.TimeSpan> _TotalTime1;
+        partial void OnTotalTime1Changing(Nullable<global::System.TimeSpan> value);
+        partial void OnTotalTime1Changed();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> CardholderID
+        {
+            get
+            {
+                return _CardholderID;
+            }
+            set
+            {
+                OnCardholderIDChanging(value);
+                ReportPropertyChanging("CardholderID");
+                _CardholderID = StructuralObject.SetValidValue(value, "CardholderID");
+                ReportPropertyChanged("CardholderID");
+                OnCardholderIDChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _CardholderID;
+        partial void OnCardholderIDChanging(Nullable<global::System.Int32> value);
+        partial void OnCardholderIDChanged();
+
+        #endregion
+
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("MojaModel", "FK_TotalTime_Cardholder", "Cardholder")]
+        public Cardholder Cardholder
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Cardholder>("MojaModel.FK_TotalTime_Cardholder", "Cardholder").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Cardholder>("MojaModel.FK_TotalTime_Cardholder", "Cardholder").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Cardholder> CardholderReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Cardholder>("MojaModel.FK_TotalTime_Cardholder", "Cardholder");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Cardholder>("MojaModel.FK_TotalTime_Cardholder", "Cardholder", value);
                 }
             }
         }

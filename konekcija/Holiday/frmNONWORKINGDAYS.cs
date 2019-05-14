@@ -79,7 +79,7 @@ namespace konekcija
             {
                 try
                 {
-                    bud = _context.Cardholders.Where(w => w.Name == txtTOTAL.Text).Select(s => s.CardholderID).First();
+                    bud = _context.Cardholders.Where(w => w.Name == cboxCARDHOLDER.Text).Select(s => s.CardholderID).First();
 
                     var i = new NonWorkingDay();
                     i.CardholderID = CARDHOLDERID;

@@ -36,15 +36,15 @@
             this.cardholderBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lblRadnik = new System.Windows.Forms.Label();
             this.dgCHECKLIST = new System.Windows.Forms.DataGridView();
+            this.directionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.localTimeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.accessLogBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtWORKTIME = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.lblDO = new System.Windows.Forms.Label();
             this.lblOD = new System.Windows.Forms.Label();
-            this.directionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.localTimeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.cardholderBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgCHECKLIST)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.accessLogBindingSource)).BeginInit();
@@ -120,13 +120,29 @@
             this.dgCHECKLIST.TabIndex = 4;
             this.dgCHECKLIST.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgCHECKLIST_CellFormatting);
             // 
+            // directionDataGridViewTextBoxColumn
+            // 
+            this.directionDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.directionDataGridViewTextBoxColumn.DataPropertyName = "Direction";
+            this.directionDataGridViewTextBoxColumn.HeaderText = "Direction";
+            this.directionDataGridViewTextBoxColumn.Name = "directionDataGridViewTextBoxColumn";
+            this.directionDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // localTimeDataGridViewTextBoxColumn
+            // 
+            this.localTimeDataGridViewTextBoxColumn.DataPropertyName = "LocalTime";
+            this.localTimeDataGridViewTextBoxColumn.HeaderText = "LocalTime";
+            this.localTimeDataGridViewTextBoxColumn.Name = "localTimeDataGridViewTextBoxColumn";
+            this.localTimeDataGridViewTextBoxColumn.ReadOnly = true;
+            this.localTimeDataGridViewTextBoxColumn.Width = 150;
+            // 
             // accessLogBindingSource
             // 
             this.accessLogBindingSource.DataSource = typeof(konekcija.AccessLog);
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.txtWORKTIME);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.cboxCARDHOLDER);
             this.groupBox1.Controls.Add(this.lblRadnik);
@@ -138,12 +154,12 @@
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             // 
-            // textBox1
+            // txtWORKTIME
             // 
-            this.textBox1.Location = new System.Drawing.Point(77, 53);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 5;
+            this.txtWORKTIME.Location = new System.Drawing.Point(77, 53);
+            this.txtWORKTIME.Name = "txtWORKTIME";
+            this.txtWORKTIME.Size = new System.Drawing.Size(100, 20);
+            this.txtWORKTIME.TabIndex = 5;
             // 
             // label1
             // 
@@ -188,22 +204,6 @@
             this.lblOD.TabIndex = 2;
             this.lblOD.Text = "Od";
             // 
-            // directionDataGridViewTextBoxColumn
-            // 
-            this.directionDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.directionDataGridViewTextBoxColumn.DataPropertyName = "Direction";
-            this.directionDataGridViewTextBoxColumn.HeaderText = "Direction";
-            this.directionDataGridViewTextBoxColumn.Name = "directionDataGridViewTextBoxColumn";
-            this.directionDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // localTimeDataGridViewTextBoxColumn
-            // 
-            this.localTimeDataGridViewTextBoxColumn.DataPropertyName = "LocalTime";
-            this.localTimeDataGridViewTextBoxColumn.HeaderText = "LocalTime";
-            this.localTimeDataGridViewTextBoxColumn.Name = "localTimeDataGridViewTextBoxColumn";
-            this.localTimeDataGridViewTextBoxColumn.ReadOnly = true;
-            this.localTimeDataGridViewTextBoxColumn.Width = 150;
-            // 
             // frmCARDHOLDER
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -243,7 +243,7 @@
         private System.Windows.Forms.Label lblDO;
         private System.Windows.Forms.Label lblOD;
         private System.Windows.Forms.BindingSource cardholderBindingSource;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtWORKTIME;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.BindingSource accessLogBindingSource;
         private System.Windows.Forms.DataGridViewTextBoxColumn directionDataGridViewTextBoxColumn;

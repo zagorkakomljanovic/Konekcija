@@ -86,9 +86,14 @@ namespace konekcija
                         MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
 
 
-                ListSHIFT = _context.Shifts.ToList();
-                shiftBindingSource.DataSource = ListSHIFT;
-                workershiftBindingSource.DataSource = ListSHIFT;
+               // ListSHIFT = _context.Shifts.ToList();
+               // shiftBindingSource.DataSource = ListSHIFT;
+               // workershiftBindingSource.DataSource = ListSHIFT;
+
+                cboxSHIFTNAME.DataSource = _context.Shifts.ToList();
+                cboxSHIFTNAMEW.DataSource = _context.Shifts.ToList();
+                cboxSHIFTNAME.Text = "";
+                cboxSHIFTNAMEW.Text = "";
 
                 SHIFTID = 0;
                 cboxSHIFTNAME.Text = "";
@@ -102,6 +107,9 @@ namespace konekcija
                 chkSATURDAY.Checked = false;
                 chkSUNDAY.Checked = false;
 
+
+                
+                                                          
 
             }
 

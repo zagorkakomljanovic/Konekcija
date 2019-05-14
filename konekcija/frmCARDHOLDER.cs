@@ -15,6 +15,10 @@ namespace konekcija
 
 
         konekcija.MojaEntities _context { get; set; }
+
+        int? WORKTIME;
+        string WORKTIMESTRING;
+
         List<Cardholder> Lista;
         List<AccessLog> Lista1;
         List<Card> Lista2;
@@ -54,16 +58,42 @@ namespace konekcija
 //} 
         private void CreateQuery (object sender, EventArgs e)
         {
+            if (cboxCARDHOLDER.Text == "")
+            {
 
+            }
+            else
+            {
+                Lista1 = _context.AccessLogs.ToList();
 
-            Lista1 = _context.AccessLogs.ToList();
-
-            Lista1 = Lista1.Where(i => ((CARDHOLDERID == 0) ? true : (i.LocalTime >= dateTimePicker1.Value.Date)
-                                       && (i.LocalTime <= dateTimePicker2.Value.Date)
-                                       && (i.CardholderID == CARDHOLDERID))).ToList();
-            accessLogBindingSource.DataSource = Lista1;
-            dgCHECKLIST.DataSource = Lista1;
+                Lista1 = Lista1.Where(i => ((CARDHOLDERID == 0) ? true : (i.LocalTime >= dateTimePicker1.Value.Date)
+                                           && (i.LocalTime <= dateTimePicker2.Value.Date)
+                                           && (i.CardholderID == CARDHOLDERID))).ToList();
+                accessLogBindingSource.DataSource = Lista1;
+                dgCHECKLIST.DataSource = Lista1;
+            }
             
+
+            if (_context.LogExceptions.Where(w => w.CardholderID == CARDHOLDERID).Select(s => s.Worktime).Count() == 0)
+            {
+
+            }
+            else
+            {
+                if (_context.LogExceptions.Where(w => w.CardholderID == CARDHOLDERID && w.LogExceptionDate == dateTimePicker1.Value.Date).Select(s => s.Worktime).Count() == 0)
+                {
+                    txtWORKTIME.Text = "";
+                }
+                else
+                {
+                    WORKTIME = _context.LogExceptions.Where(w => w.CardholderID == CARDHOLDERID && w.LogExceptionDate == dateTimePicker1.Value.Date).Select(s => s.Worktime).First();
+                    WORKTIMESTRING = (WORKTIME / 60 + ":" + WORKTIME % 60).ToString();
+
+                    txtWORKTIME.Text = WORKTIMESTRING;
+                }
+                
+            }
+
 
         }
         private void dgCHECKLIST_CellFormatting(object sender,DataGridViewCellFormattingEventArgs e)
@@ -92,7 +122,8 @@ namespace konekcija
         private void cboxCARDHOLDER_SelectedIndexChanged(object sender, EventArgs e)
         {
             CARDHOLDERID = 0;
-            if (cboxCARDHOLDER.Text == "")
+            if (cboxCARDHOLDER.Text == ""
+                || dateTimePicker1.Value.Date >= System.DateTime.Now.Date)
             {
 
             }
@@ -108,6 +139,18 @@ namespace konekcija
 
                 accessLogBindingSource.DataSource = Lista1;
                 dgCHECKLIST.DataSource = Lista1;
+                if (_context.LogExceptions.Where(w => w.CardholderID == CARDHOLDERID).Select(s => s.Worktime).Count() == 0)
+                {
+
+                }
+                else
+                {
+                    WORKTIME = _context.LogExceptions.Where(w => w.CardholderID == CARDHOLDERID && w.LogExceptionDate == dateTimePicker1.Value.Date).Select(s => s.Worktime).First();
+                    WORKTIMESTRING = (WORKTIME / 60 + ":" + WORKTIME % 60).ToString();
+
+                    txtWORKTIME.Text = WORKTIMESTRING;
+                }
+                
 
             }
             
