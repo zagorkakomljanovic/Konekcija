@@ -46,8 +46,8 @@ namespace konekcija
                 {
                     Lista3 = _context.LogExceptions.ToList();
 
-                    Lista3 = Lista3.Where(i => ((i.Date >= dateTimePicker1.Value.Date)
-                                               && (i.Date <= dateTimePicker2.Value.Date))).ToList();
+                    Lista3 = Lista3.Where(i => ((i.LogExceptionDate >= dateTimePicker1.Value.Date)
+                                               && (i.LogExceptionDate <= dateTimePicker2.Value.Date))).ToList();
 
                     logExceptionBindingSource.DataSource = Lista3;
                     dgLOGEXCEPTION.DataSource = Lista3;
@@ -56,8 +56,8 @@ namespace konekcija
                 {
                     Lista3 = _context.LogExceptions.ToList();
 
-                    Lista3 = Lista3.Where(i => ((CARDHOLDERID == 0) ? true : (i.Date >= dateTimePicker1.Value.Date)
-                                               && (i.Date <= dateTimePicker2.Value.Date)
+                    Lista3 = Lista3.Where(i => ((CARDHOLDERID == 0) ? true : (i.LogExceptionDate >= dateTimePicker1.Value.Date)
+                                               && (i.LogExceptionDate <= dateTimePicker2.Value.Date)
                                                && (i.CardholderID == CARDHOLDERID))).ToList();
 
                     logExceptionBindingSource.DataSource = Lista3;
@@ -109,8 +109,8 @@ namespace konekcija
                 {
                     Lista3 = _context.LogExceptions.ToList();
 
-                    Lista3 = Lista3.Where(i => ((i.Date >= dateTimePicker1.Value.Date)
-                                               && (i.Date <= dateTimePicker2.Value.Date))).ToList();
+                    Lista3 = Lista3.Where(i => ((i.LogExceptionDate >= dateTimePicker1.Value.Date)
+                                               && (i.LogExceptionDate <= dateTimePicker2.Value.Date))).ToList();
 
                     logExceptionBindingSource.DataSource = Lista3;
                     dgLOGEXCEPTION.DataSource = Lista3;
@@ -119,8 +119,8 @@ namespace konekcija
                 {
                     Lista3 = _context.LogExceptions.ToList();
 
-                    Lista3 = Lista3.Where(i => ((CARDHOLDERID == 0) ? true : (i.Date >= dateTimePicker1.Value.Date)
-                                               && (i.Date <= dateTimePicker2.Value.Date)
+                    Lista3 = Lista3.Where(i => ((CARDHOLDERID == 0) ? true : (i.LogExceptionDate >= dateTimePicker1.Value.Date)
+                                               && (i.LogExceptionDate <= dateTimePicker2.Value.Date)
                                                && (i.CardholderID == CARDHOLDERID))).ToList();
 
                     logExceptionBindingSource.DataSource = Lista3;

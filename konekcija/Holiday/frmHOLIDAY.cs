@@ -19,6 +19,7 @@ namespace konekcija
         int CARDHOLDERID;
         int HOLIDAYID;
         int? TLEFT;
+        int? NUMBEROFDAYS;
 
 
         public frmHOLIDAY()
@@ -136,8 +137,9 @@ namespace konekcija
                 {                    
 
                     TLEFT = _context.NonWorkingDays.Where(w => w.CardholderID == CARDHOLDERID).Select(s => s.TotalNWD).First();
+                    NUMBEROFDAYS = Convert.ToInt32(_context.Holidays.Where(w => w.CardholderID == CARDHOLDERID).Select(s => s.NumberOfDays).Sum());
 
-                    txtTOTALLEFT.Text = (TLEFT - _context.Holidays.Where(w => w.CardholderID == CARDHOLDERID).Select(s => s.NumberOfDays).Sum()).ToString();
+                    txtTOTALLEFT.Text = (TLEFT - NUMBEROFDAYS).ToString();
                 }                               
 
             }
