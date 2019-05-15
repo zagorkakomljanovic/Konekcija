@@ -56,7 +56,7 @@
     <Key>
       <PropertyRef Name="HolidayID" />
     </Key>
-    <Property Name="HolidayID" Type="int" Nullable="false" />
+    <Property Name="HolidayID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="LeaveDate" Type="date" />
     <Property Name="ReturnDate" Type="date" />
     <Property Name="NumberOfDays" Type="int" />
@@ -86,7 +86,7 @@
     <Key>
       <PropertyRef Name="Non_working_daysID" />
     </Key>
-    <Property Name="Non_working_daysID" Type="int" Nullable="false" />
+    <Property Name="Non_working_daysID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="TotalNWD" Type="int" />
     <Property Name="CardholderID" Type="int" />
   </EntityType>

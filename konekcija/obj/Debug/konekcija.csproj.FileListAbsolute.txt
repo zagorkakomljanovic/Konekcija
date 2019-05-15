@@ -170,3 +170,4 @@ C:\Users\Control 2\Documents\GitHub\project1-zagorka\Konekcija\konekcija\obj\Deb
 C:\Users\Control 2\Documents\GitHub\project1-zagorka\Konekcija\konekcija\obj\Debug\konekcija.csproj.CopyComplete
 C:\Users\Control 2\Documents\GitHub\project1-zagorka\Konekcija\konekcija\obj\Debug\konekcija.exe
 C:\Users\Control 2\Documents\GitHub\project1-zagorka\Konekcija\konekcija\obj\Debug\konekcija.pdb
+C:\Users\Control 2\Documents\GitHub\project1-zagorka\Konekcija\konekcija\obj\Debug\konekcija.csprojAssemblyReference.cache
