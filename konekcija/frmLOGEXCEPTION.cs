@@ -13,60 +13,53 @@ namespace konekcija
     public partial class frmLOGEXCEPTION : Form
     {
         konekcija.MojaEntities _context;
-        //List<Cardholder> Lista;
+        List<Cardholder> ListaCARDHOLDER;
         //List<AccessLog> Lista1;
         //List<Card> Lista2;
-        List<LogException> Lista3;
+        List<LogException> ListaLOGEXCEPTION;
 
 
-        public int CARDHOLDERID;
-        public int brojac;
+        int CARDHOLDERID;
+        // int brojac;
+        int? WORKTIME;
+        string WORKTIMESTRING;
 
         public frmLOGEXCEPTION()
         {
             InitializeComponent();
-        }       
+        }
 
         private void cboxCARDHOLDER_SelectedIndexChanged(object sender, EventArgs e)
         {
 
             CARDHOLDERID = 0;
-            Lista3 = null;
-            
-            
+            ListaLOGEXCEPTION = null;
+
+
             if (cboxCARDHOLDER.Text == "" || cboxCARDHOLDER.Text == "AccessLog")
             {
-               
+
             }
             else
             {
                 CARDHOLDERID = _context.Cardholders.Where(w => w.Name == cboxCARDHOLDER.Text).Select(s => s.CardholderID).First();
 
-                if (CARDHOLDERID == 0)
-                {
-                    Lista3 = _context.LogExceptions.ToList();
-
-                    Lista3 = Lista3.Where(i => ((i.LogExceptionDate >= dateTimePicker1.Value.Date)
-                                               && (i.LogExceptionDate <= dateTimePicker2.Value.Date))).ToList();
-
-                    logExceptionBindingSource.DataSource = Lista3;
-                    dgLOGEXCEPTION.DataSource = Lista3;
-                }
-                else
-                {
-                    Lista3 = _context.LogExceptions.ToList();
-
-                    Lista3 = Lista3.Where(i => ((CARDHOLDERID == 0) ? true : (i.LogExceptionDate >= dateTimePicker1.Value.Date)
-                                               && (i.LogExceptionDate <= dateTimePicker2.Value.Date)
-                                               && (i.CardholderID == CARDHOLDERID))).ToList();
-
-                    logExceptionBindingSource.DataSource = Lista3;
-                    dgLOGEXCEPTION.DataSource = Lista3;
-                }              
-                
+                createQueryLOGEXCEPTION();
             }
-                  
-        }         
+
+            // RACUNANJE VREMENA IZ INT
+
+            if (_context.LogExceptions.Where(w => w.CardholderID == CARDHOLDERID && w.LogExceptionDate == dateTimePicker1.Value.Date).Select(s => s.Worktime).Count() == 0)
+            {
+
+            }
+            else
+            {
+                WORKTIME = _context.LogExceptions.Where(w => w.CardholderID == CARDHOLDERID && w.LogExceptionDate == dateTimePicker1.Value.Date).Select(s => s.Worktime).First();
+                WORKTIMESTRING = (WORKTIME / 60 + ":" + WORKTIME % 60).ToString();
+            }
+
+        }
 
         private void frmEXCEPTION_Load(object sender, EventArgs e)
         {
@@ -74,11 +67,8 @@ namespace konekcija
             cboxCARDHOLDER.DataSource = _context.Cardholders.ToList();
             cboxCARDHOLDER.Text = "";
 
-            Lista3 = _context.LogExceptions.ToList();
-           // Lista2 = _context.Cards.ToList();
-           // Lista1 = _context.AccessLogs.ToList();
-           // Lista = _context.Cardholders.ToList();
-        }        
+            ListaLOGEXCEPTION = _context.LogExceptions.ToList();
+        }
 
         private void dgLOGEXCEPTION_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
@@ -92,7 +82,7 @@ namespace konekcija
                         var card = (konekcija.LogException)(row.DataBoundItem);
                         var imer = card.Cardholder;
 
-                         row.Cells[gvCARDHOLDER.Index].Value = imer.Name;
+                        row.Cells[gvCARDHOLDER.Index].Value = imer.Name;
                     }
                 }
             }
@@ -107,27 +97,125 @@ namespace konekcija
             {
                 if (CARDHOLDERID == 0)
                 {
-                    Lista3 = _context.LogExceptions.ToList();
+                    ListaLOGEXCEPTION = _context.LogExceptions.ToList();
 
-                    Lista3 = Lista3.Where(i => ((i.LogExceptionDate >= dateTimePicker1.Value.Date)
+                    ListaLOGEXCEPTION = ListaLOGEXCEPTION.Where(i => ((i.LogExceptionDate >= dateTimePicker1.Value.Date)
                                                && (i.LogExceptionDate <= dateTimePicker2.Value.Date))).ToList();
 
-                    logExceptionBindingSource.DataSource = Lista3;
-                    dgLOGEXCEPTION.DataSource = Lista3;
+                    logExceptionBindingSource.DataSource = ListaLOGEXCEPTION;
+                    dgLOGEXCEPTION.DataSource = ListaLOGEXCEPTION;
                 }
                 else
                 {
-                    Lista3 = _context.LogExceptions.ToList();
+                    ListaLOGEXCEPTION = _context.LogExceptions.ToList();
 
-                    Lista3 = Lista3.Where(i => ((CARDHOLDERID == 0) ? true : (i.LogExceptionDate >= dateTimePicker1.Value.Date)
+                    ListaLOGEXCEPTION = ListaLOGEXCEPTION.Where(i => ((CARDHOLDERID == 0) ? true : (i.LogExceptionDate >= dateTimePicker1.Value.Date)
                                                && (i.LogExceptionDate <= dateTimePicker2.Value.Date)
                                                && (i.CardholderID == CARDHOLDERID))).ToList();
 
-                    logExceptionBindingSource.DataSource = Lista3;
-                    dgLOGEXCEPTION.DataSource = Lista3;
+                    logExceptionBindingSource.DataSource = ListaLOGEXCEPTION;
+                    dgLOGEXCEPTION.DataSource = ListaLOGEXCEPTION;
                 }
             }
-            
+        }
+
+        private void dgLOGEXCEPTION_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dgLOGEXCEPTION.Columns[e.ColumnIndex].Name.Equals("worktimeDataGridViewTextBoxColumn") &&
+                e.RowIndex >= 0 &&
+                dgLOGEXCEPTION["worktimeDataGridViewTextBoxColumn", e.RowIndex].Value is int)
+            {
+                int a = (int)dgLOGEXCEPTION["worktimeDataGridViewTextBoxColumn", e.RowIndex].Value;
+                e.Value = (a / 60 + ":" + a % 60).ToString();
+            }
+        }
+
+        private void chkWORKTIME_CheckedChanged(object sender, EventArgs e)
+        {
+            // DOBIJANJE PODATAKA IZ BAZE ZA ZADATI EXCEPTION
+
+            if (chkWORKTIME.Checked == true)
+            {
+                chkIN_OUT.Checked = false;
+
+                if (CARDHOLDERID != -1)
+                {
+                    if (CARDHOLDERID == 0)
+                    {
+                        ListaLOGEXCEPTION = _context.LogExceptions.ToList();
+                        ListaLOGEXCEPTION = ListaLOGEXCEPTION.Where(w => w.LogExceptionDate >= dateTimePicker1.Value.Date && w.LogExceptionDate <= dateTimePicker2.Value.Date && w.Worktime < 480).ToList();
+
+                        dgLOGEXCEPTION.DataSource = ListaLOGEXCEPTION;
+                    }
+                    else
+                    {
+                        ListaLOGEXCEPTION = _context.LogExceptions.ToList();
+                        ListaLOGEXCEPTION = ListaLOGEXCEPTION.Where(w => w.LogExceptionDate >= dateTimePicker1.Value.Date && w.LogExceptionDate <= dateTimePicker2.Value.Date && w.Worktime < 480 && w.CardholderID == CARDHOLDERID).ToList();
+
+                        dgLOGEXCEPTION.DataSource = ListaLOGEXCEPTION;
+                    }
+                }
+
+            }
+            else
+            {
+                createQueryLOGEXCEPTION();
+            }
+
+        }
+
+        private void chkIN_OUT_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkIN_OUT.Checked == true)
+            {
+                chkWORKTIME.Checked = false;
+
+                if (CARDHOLDERID != -1)
+                {
+                    if (CARDHOLDERID == 0)
+                    {
+                        ListaLOGEXCEPTION = _context.LogExceptions.ToList();
+                        ListaLOGEXCEPTION = ListaLOGEXCEPTION.Where(w => w.LogExceptionDate >= dateTimePicker1.Value.Date && w.LogExceptionDate <= dateTimePicker2.Value.Date && w.Worktime == null).ToList();
+
+                        dgLOGEXCEPTION.DataSource = ListaLOGEXCEPTION;
+                    }
+                    else
+                    {
+                        ListaLOGEXCEPTION = _context.LogExceptions.ToList();
+                        ListaLOGEXCEPTION = ListaLOGEXCEPTION.Where(w => w.LogExceptionDate >= dateTimePicker1.Value.Date && w.LogExceptionDate <= dateTimePicker2.Value.Date && w.Worktime == null && w.CardholderID == CARDHOLDERID).ToList();
+
+                        dgLOGEXCEPTION.DataSource = ListaLOGEXCEPTION;
+                    }
+                }
+            }
+            else
+            {
+                createQueryLOGEXCEPTION();
+            }
+        }
+        public void createQueryLOGEXCEPTION ()
+        {
+            if (CARDHOLDERID == 0)
+            {
+                ListaLOGEXCEPTION = _context.LogExceptions.ToList();
+
+                ListaLOGEXCEPTION = ListaLOGEXCEPTION.Where(i => ((i.LogExceptionDate >= dateTimePicker1.Value.Date)
+                                           && (i.LogExceptionDate <= dateTimePicker2.Value.Date))).ToList();
+
+                logExceptionBindingSource.DataSource = ListaLOGEXCEPTION;
+                dgLOGEXCEPTION.DataSource = ListaLOGEXCEPTION;
+            }
+            else
+            {
+                ListaLOGEXCEPTION = _context.LogExceptions.ToList();
+
+                ListaLOGEXCEPTION = ListaLOGEXCEPTION.Where(i => ((CARDHOLDERID == 0) ? true : (i.LogExceptionDate >= dateTimePicker1.Value.Date)
+                                           && (i.LogExceptionDate <= dateTimePicker2.Value.Date)
+                                           && (i.CardholderID == CARDHOLDERID))).ToList();
+
+                logExceptionBindingSource.DataSource = ListaLOGEXCEPTION;
+                dgLOGEXCEPTION.DataSource = ListaLOGEXCEPTION;
+            }
         }
     }
     

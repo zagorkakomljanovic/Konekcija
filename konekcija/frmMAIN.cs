@@ -5,7 +5,7 @@ using System.Windows.Forms;
 using System.Data.OleDb;
 using System.Data.SqlClient;
 using System.Linq;
-
+using System.IO;
 
 namespace konekcija
 {
@@ -16,7 +16,7 @@ namespace konekcija
         //ovdje je trebalo instalirati microsoft Access Database Engine 2010 ali za 32bitni sistem tacnije sa ovog linka :https://www.microsoft.com/en-us/download/confirmation.aspx?id=13255
         const string connectionStringConf = "Provider=Microsoft.ACE.OLEDB.12.0; Data Source=C:\\ASManager\\ASRes\\ASConfig.mdb;Persist Security Info = False;";
         const string connectionStringLog = "Provider=Microsoft.ACE.OLEDB.12.0; Data Source=C:\\ASManager\\ASRes\\ASLog.mdb;Persist Security Info = False;";
-        const string connectionStringDest = "Data Source = PD; Initial Catalog=Moja;Integrated Security=SSPI; MultipleActiveResultSets=true;";
+        const string connectionStringDest = "Data Source = PD1; Initial Catalog=Moja;Integrated Security=SSPI; MultipleActiveResultSets=true;";
 
         // lista(spisak) tabela u Access bazi, ova lista je nadalje vidljiva i u funkciji koja sakuplja imena tabela GetTableNames();
         List<string> tables = new List<string>();
@@ -106,14 +106,14 @@ namespace konekcija
                     destinationConnection.Close();
                 }
             }
-            UpdateNumLog();
-            UpdateException();
+            InsertAllTables();
+
 
         }
 
 
 
-        public void UpdateNumLog()
+        public void InsertAllTables()
         {
             using (destinationConnection = new SqlConnection(connectionStringDest))
             {
@@ -135,27 +135,17 @@ namespace konekcija
                     "where BreakTime.CardholderID = UserActivityWPairedTimes.LogOnUser and BreakTime.ActivityDate = UserActivityWPairedTimes.ActivityDate and BreakTime.LogOff = UserActivityWPairedTimes.LogOffActivityTime and BreakTime.LogOn = UserActivityWPairedTimes.LogOnActivityTime) ORDER BY CardholderID, ActivityDate", destinationConnection);
                 commandDestinationData10.ExecuteScalar();
 
-                //MessageBox.Show("SQL baza otvorena za popunjavanje tabele BreakTime");
-                //var commandDestinationData11 = new SqlCommand("  INSERT INTO LogException(Worktime, LogExceptionDate, ExcIN_OUT, CardholderID) SELECT CASE WHEN LogNum = 4 AND LogNum.SumDirection = 6  THEN (SELECT TOP 1 DATEDIFF(minute, BreakTime, TotalTime) from TotalTime left join BreakTime on BreakTime.CardholderID = TotalTime.CardholderID and TotalTime.ActivityDate = BreakTime.ActivityDate where TotalTime.ActivityDate = LogNum.LogDate and TotalTime.CardholderID = LogNum.CardholderID) ELSE NULL END LogNum.LogDate  , CASE WHEN LogNum.LogNum = 4 AND LogNum.SumDirection = 6  THEN 0 ELSE 1 END ,LogNum.CardholderID"+
-                //    "FROM LogNum WHERE not exists(select CardholderID, LogExceptionDate from LogException where LogNum.CardholderID= LogException.CardholderID and LogNum.LogDate= LogException.LogExceptionDate)", destinationConnection);
-                //commandDestinationData11.ExecuteScalar();
 
+                var fileContent = File.ReadAllText(@"C:\share\INSERTI.sql");
+                var sqlqueries = fileContent.Split(new[] { " GO " }, StringSplitOptions.RemoveEmptyEntries);
+                var cmd = new SqlCommand("query", destinationConnection);
 
-
-
-                //if (a > 0)
-                //{
-                //    MessageBox.Show("nije prazna");
-                //    var commandDestinationData1 = new SqlCommand("INSERT INTO LogNum(CardholderID, SumDirection, LogNum, LogDate) SELECT CardholderID, Sum(Direction), Count(CardholderID), CAST(LocalTime AS DATE) FROM AccessLog where CardholderID in (select CardholderId from Cardholder) AND (CAST(LocalTime AS DATE) > (SELECT MAX(LogDate) FROM LogNum)) AND CAST(LocalTime AS DATE) < (CAST(getdate() AS date)) group by CardholderID , CAST(LocalTime AS DATE) order by CAST(LocalTime AS DATE)", destinationConnection);
-                //    commandDestinationData1.ExecuteNonQuery();
-                //}
-                //else
-                //{
-                //    MessageBox.Show("prazna");
-                //    var commandDestinationData2 = new SqlCommand("INSERT INTO LogNum(CardholderID, SumDirection, LogNum, LogDate) SELECT CardholderID, Sum(Direction), Count(CardholderID), CAST(LocalTime AS DATE) FROM AccessLog where CardholderID in (select CardholderId from Cardholder) AND CAST(LocalTime AS DATE) < (CAST(getdate() AS date)) group by CardholderID , CAST(LocalTime AS DATE) order by CAST(LocalTime AS DATE)", destinationConnection);
-                //    commandDestinationData2.ExecuteNonQuery();
-                //}
-
+                foreach (var query in sqlqueries)
+                {
+                    cmd.CommandText = query;
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("Unijeto LogException");
+                }
 
                 destinationConnection.Close();
                 MessageBox.Show("numLog izlaz");
@@ -164,20 +154,7 @@ namespace konekcija
         }
 
 
-        public void UpdateException()
-        {
-            using (destinationConnection = new SqlConnection(connectionStringDest))
-            {
-                destinationConnection.Open();
 
-                MessageBox.Show("SQL baza otvorena za popunjavanje tabele Exception");
-                var commandDestinationData = new SqlCommand("INSERT INTO LogException(Worktime, LogExceptionDate, ExcIN_OUT, CardholderID) SELECT CASE WHEN LogNum = 4 AND LogNum.SumDirection = 6  THEN '08:00:00' ELSE NULL END , LogDate ,CASE WHEN LogNum = 4 AND LogNum.SumDirection = 6 THEN 0 ELSE 1 END, CardholderID FROM LogNum ", destinationConnection);
-                //commandDestinationData.ExecuteNonQuery();
-                //String a = commandDestinationData8.ExecuteScalar().ToString();
-                destinationConnection.Close();
-            }
-
-        }
 
 
         private void button2_Click(object sender, EventArgs e)
