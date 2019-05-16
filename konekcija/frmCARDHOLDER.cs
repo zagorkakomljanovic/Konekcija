@@ -93,12 +93,10 @@ namespace konekcija
                 }
                 
             }
-
-
         }
         private void dgCHECKLIST_CellFormatting(object sender,DataGridViewCellFormattingEventArgs e)
         {
-
+                       
             if (dgCHECKLIST.Columns[e.ColumnIndex].Name.Equals("directionDataGridViewTextBoxColumn") &&
                 e.RowIndex >= 0 &&
                 dgCHECKLIST["directionDataGridViewTextBoxColumn", e.RowIndex].Value is int)
@@ -109,13 +107,27 @@ namespace konekcija
                     case 2:
 
                         e.Value = "OUT";
-                        e.FormattingApplied = true;
+                        e.FormattingApplied = true;                        
                         break;
                     case 1:
                         e.Value = "IN";
                         e.FormattingApplied = true;
                         break;
                 }
+            }
+
+            if (dgCHECKLIST.Columns[e.ColumnIndex].Name.Equals("TotalWorktime") &&
+                e.RowIndex >= 0 &&
+                dgCHECKLIST["directionDataGridViewTextBoxColumn", e.RowIndex].Value is int)
+            {
+
+               var a = (int?)dgCHECKLIST["TotalWorktime", e.RowIndex].Value;
+                //for (DateTime i = dateTimePicker1.Value.Date; i <= dateTimePicker2.Value.Date; i++)
+                //{
+
+                //}
+               e.Value = WORKTIMESTRING;
+                
             }
         }
 
@@ -139,7 +151,7 @@ namespace konekcija
 
                 accessLogBindingSource.DataSource = Lista1;
                 dgCHECKLIST.DataSource = Lista1;
-                if (_context.LogExceptions.Where(w => w.CardholderID == CARDHOLDERID).Select(s => s.Worktime).Count() == 0)
+                if (_context.LogExceptions.Where(w => w.CardholderID == CARDHOLDERID && w.LogExceptionDate == dateTimePicker1.Value.Date).Select(s => s.Worktime).Count() == 0)
                 {
 
                 }
@@ -150,10 +162,7 @@ namespace konekcija
 
                     txtWORKTIME.Text = WORKTIMESTRING;
                 }
-                
-
-            }
-            
-        }
+            }            
+        }        
     }
 }
