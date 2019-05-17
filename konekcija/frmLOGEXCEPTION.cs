@@ -13,7 +13,7 @@ namespace konekcija
     public partial class frmLOGEXCEPTION : Form
     {
         konekcija.MojaEntities _context;
-        List<Cardholder> ListaCARDHOLDER;
+        
         //List<AccessLog> Lista1;
         //List<Card> Lista2;
         List<LogException> ListaLOGEXCEPTION;
@@ -289,6 +289,12 @@ namespace konekcija
                     }
                 }
             }
+        }
+
+        private void btnWorkerpresence_Click(object sender, EventArgs e)
+        {
+            Form frm = new frmCARDHOLDER();
+            frm.ShowDialog();
         }
     }
     

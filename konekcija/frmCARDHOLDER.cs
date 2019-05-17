@@ -14,7 +14,7 @@ namespace konekcija
     {
 
 
-        konekcija.MojaEntities _context { get; set; }
+        private konekcija.MojaEntities _context { get; set; }
 
         int? WORKTIME;
         string WORKTIMESTRING;
@@ -27,9 +27,9 @@ namespace konekcija
 
         public frmCARDHOLDER()
         {
-            InitializeComponent();
-
             _context = new konekcija.MojaEntities();
+
+            InitializeComponent();            
         }      
 
         private void Form2_Load(object sender, EventArgs e)
@@ -163,6 +163,33 @@ namespace konekcija
                     txtWORKTIME.Text = WORKTIMESTRING;
                 }
             }            
-        }        
+        }
+
+        public class AccessLogReport
+        {
+            public int cardholderid { get; set; }
+            public string name { get; set; }
+            public string worktime { get; set; }
+            public string date { get; set; }
+            public int? IN { get; set; }
+            public int? OUT { get; set; }            
+        }
+
+        private void btnPRINT_Click(object sender, EventArgs e)
+        {
+            //List<AccessLog> ListaREP = _context.AccessLogs.Where(w => w.CardholderID == CARDHOLDERID && w.LocalTime >= dateTimePicker1.Value.Date && w.LocalTime <= dateTimePicker2.Value.Date).Select(s =>
+            //new AccessLogReport
+            //{
+            //    name = s.Cardholder.Name,
+            //    IN = s.Direction,
+            //    OUT = s.Direction,
+            //    date = Convert.ToString(s.LocalTime),
+            //    worktime = WORKTIMESTRING,
+            //}).ToList();
+
+            //frmREPORT frmREPORT = new frmREPORT(ListaREP, "Nesto12345", "Nesto1234567890");
+            //frmREPORT.ShowDialog();
+
+        }
     }
 }

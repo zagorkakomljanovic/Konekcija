@@ -47,6 +47,7 @@
             this.LogExceptionDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.worktimeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.logExceptionBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.btnWorkerpresence = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cardholderBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.accessLogBindingSource)).BeginInit();
@@ -218,11 +219,22 @@
             // 
             this.logExceptionBindingSource.DataSource = typeof(konekcija.LogException);
             // 
+            // btnWorkerpresence
+            // 
+            this.btnWorkerpresence.Location = new System.Drawing.Point(322, 36);
+            this.btnWorkerpresence.Name = "btnWorkerpresence";
+            this.btnWorkerpresence.Size = new System.Drawing.Size(143, 23);
+            this.btnWorkerpresence.TabIndex = 9;
+            this.btnWorkerpresence.Text = "Worker presence";
+            this.btnWorkerpresence.UseVisualStyleBackColor = true;
+            this.btnWorkerpresence.Click += new System.EventHandler(this.btnWorkerpresence_Click);
+            // 
             // frmLOGEXCEPTION
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(499, 431);
+            this.Controls.Add(this.btnWorkerpresence);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.dgLOGEXCEPTION);
             this.Controls.Add(this.groupBox2);
@@ -265,5 +277,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn gvCARDHOLDER;
         private System.Windows.Forms.DataGridViewTextBoxColumn LogExceptionDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn worktimeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Button btnWorkerpresence;
     }
 }
