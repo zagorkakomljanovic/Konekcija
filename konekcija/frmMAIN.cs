@@ -6,6 +6,7 @@ using System.Data.OleDb;
 using System.Data.SqlClient;
 using System.Linq;
 using System.IO;
+using System.Timers;
 
 namespace konekcija
 {
@@ -16,7 +17,7 @@ namespace konekcija
         //ovdje je trebalo instalirati microsoft Access Database Engine 2010 ali za 32bitni sistem tacnije sa ovog linka :https://www.microsoft.com/en-us/download/confirmation.aspx?id=13255
         const string connectionStringConf = "Provider=Microsoft.ACE.OLEDB.12.0; Data Source=C:\\ASManager\\ASRes\\ASConfig.mdb;Persist Security Info = False;";
         const string connectionStringLog = "Provider=Microsoft.ACE.OLEDB.12.0; Data Source=C:\\ASManager\\ASRes\\ASLog.mdb;Persist Security Info = False;";
-        const string connectionStringDest = "Data Source = PD1; Initial Catalog=Moja;Integrated Security=SSPI; MultipleActiveResultSets=true;";
+        const string connectionStringDest = "Data Source = PD; Initial Catalog=Moja;Integrated Security=SSPI; MultipleActiveResultSets=true;";
 
         // lista(spisak) tabela u Access bazi, ova lista je nadalje vidljiva i u funkciji koja sakuplja imena tabela GetTableNames();
         List<string> tables = new List<string>();
@@ -28,7 +29,93 @@ namespace konekcija
             // inicijalizacija same Forme, svih komponenata
             InitializeComponent();
             //dodavanje Event handlera na klik dugmeta button1
-            Button1.Click += new EventHandler(Button1_Click);
+            //Button1.Click += new EventHandler(Button1_Click);
+
+            System.Timers.Timer myTimer = new System.Timers.Timer();
+            myTimer.Elapsed += new ElapsedEventHandler(DisplayTimeEvent);
+            myTimer.Interval = 60000; // 1000 ms is one second
+            myTimer.Start();
+        }
+
+
+        public void DisplayTimeEvent(object source, ElapsedEventArgs e)
+        {
+
+            //kada se klikne laabela mjenja ime na Hello, a pojavljuje se poruka sa sadrzajem "zdravo"
+            //ovo je radjeno samo zbog testiranja
+            //  labela.Text = "Hello ";
+            //  labela.Refresh();
+            //  MessageBox.Show("zdravo");
+            //sakupljanje imena tabela
+            tables.Clear();
+            GetTableNames(connectionStringConf);
+            //komunikacija izmedju dvije baze
+            //lokacija za SQL server
+
+            using (sourceConnection = new OleDbConnection(connectionStringConf))
+            {
+                //otvaranje izvorne baze Access
+                sourceConnection.Open();
+                //konektovanje na SQL bazu
+                using (destinationConnection = new SqlConnection(connectionStringDest))
+                {
+                    //otvaranje SQL baze
+                    destinationConnection.Open();
+
+                    //MessageBox.Show("SQL baza otvorena");
+                    foreach (string tbl in tables)
+                    {
+                        switch (tbl)
+                        {
+                            case "Cardholder":
+                                Cardholder_update(sourceConnection, destinationConnection, tbl);
+                                break;
+                            case "Card":
+                                Card_update(sourceConnection, destinationConnection, tbl);
+                                break;
+                            default:
+                                Console.WriteLine("Default case");
+                                break;
+                        }
+                    }
+                    sourceConnection.Close();
+                    destinationConnection.Close();
+                }
+            }
+
+            tables.Clear();
+            GetTableNames(connectionStringLog);
+
+            using (sourceConnection = new OleDbConnection(connectionStringLog))
+            {
+                //otvaranje izvorne baze Access
+                sourceConnection.Open();
+                //konektovanje na SQL bazu
+                using (destinationConnection = new SqlConnection(connectionStringDest))
+                {
+                    //otvaranje SQL baze
+                    destinationConnection.Open();
+
+                    //MessageBox.Show("SQL baza otvorena");
+                    foreach (string tbl in tables)
+                    {
+                        switch (tbl)
+                        {
+                            case "AccessLog":
+                                Logs_update(sourceConnection, destinationConnection, tbl);
+                                //MessageBox.Show("AccessLog");
+                                break;
+                            default:
+                                Console.WriteLine("Default case");
+                                break;
+                        }
+                    }
+                    sourceConnection.Close();
+                    destinationConnection.Close();
+                }
+            }
+            InsertAllTables();
+
         }
         //akcije na klik dugmeta
         private void Button1_Click(object sender, EventArgs e)
@@ -88,14 +175,14 @@ namespace konekcija
                     //otvaranje SQL baze
                     destinationConnection.Open();
 
-                    MessageBox.Show("SQL baza otvorena");
+                    //MessageBox.Show("SQL baza otvorena");
                     foreach (string tbl in tables)
                     {
                         switch (tbl)
                         {
                             case "AccessLog":
                                 Logs_update(sourceConnection, destinationConnection, tbl);
-                                MessageBox.Show("AccessLog");
+                                //MessageBox.Show("AccessLog");
                                 break;
                             default:
                                 Console.WriteLine("Default case");
@@ -120,15 +207,16 @@ namespace konekcija
                 destinationConnection.Open();
 
 
-                MessageBox.Show("SQL baza otvorena za popunjavanje tabele LogNum");
+
+                //MessageBox.Show("SQL baza otvorena za popunjavanje tabele LogNum");
                 var commandDestinationData8 = new SqlCommand("INSERT INTO LogNum (CardholderID,  SumDirection, LogNum, LogDate) SELECT CardholderID, Sum(Direction), Count(CardholderID), CAST(LocalTime AS DATE) FROM AccessLog where CardholderID in (select CardholderId from Cardholder) and not exists(select CardholderID, LogDate from LogNum where LogNum.CardholderID = AccessLog.CardholderID and LogNum.LogDate = Cast(AccessLog.LocalTime As date)) and CAST(AccessLog.LocalTime AS DATE) != CAST(GETDATE() As date) group by CardholderID , CAST(LocalTime AS DATE) order by CAST(LocalTime AS DATE)", destinationConnection);
                 commandDestinationData8.ExecuteScalar();
 
-                MessageBox.Show("SQL baza otvorena za popunjavanje tabele TotalTime");
+                //MessageBox.Show("SQL baza otvorena za popunjavanje tabele TotalTime");
                 var commandDestinationData9 = new SqlCommand("Insert Into TotalTime (CardholderID, TotalTime, ActivityDate) Select AccessLog.CardholderID, CAST(MAX(LocalTime) - Min(LocalTime)  AS Time) TotalTime, Cast(LocalTime as Date) from AccessLog where CardholderID in (Select CardholderID from Cardholder) and not exists(select CardholderID, ActivityDate from TotalTime where TotalTime.CardholderID = AccessLog.CardholderID and TotalTime.ActivityDate = Cast(AccessLog.LocalTime As date)) group by CardholderID, CAST(LocalTime As date) Order by CAST(LocalTime As date)", destinationConnection);
                 commandDestinationData9.ExecuteScalar();
 
-                MessageBox.Show("SQL baza otvorena za popunjavanje tabele BreakTime");
+                //MessageBox.Show("SQL baza otvorena za popunjavanje tabele BreakTime");
                 var commandDestinationData10 = new SqlCommand("; WITH UserActivityWPairedTimes AS (SELECT Direction, ActivityDate = CAST(LocalTime As DATE), LogOnUser = CardholderID, LogOffUser = Lag(CardholderID, 1) OVER(ORDER BY CardholderID, LocalTime), LogOnActivityTime = LocalTime, LogOffActivityTime = Lag(LocalTime, 1) OVER(ORDER BY CardholderID, LocalTime), LogOnActivityDate = CAST(LocalTime AS DATE), LogOffActivityDate = CAST(Lag(LocalTime, 1) OVER(ORDER BY CardholderID, LocalTime) AS DATE) FROM AccessLog)" +
                     "Insert Into BreakTime(CardholderID, ActivityDate, LogOff, LogOn, BreakTime, LogNum, SumDirection)" +
                     "SELECT LogOnUser CardholderID, ActivityDate, LogOffActivityTime LogOff, LogOnActivityTime LogOn, CONVERT(varchar(12), DATEADD(minute, DATEDIFF(minute, LogOffActivityTime, LogOnActivityTime), 0), 114) BreakTime, LogNum, SumDirection FROM UserActivityWPairedTimes JOIN LogNum On LogOnUser = CardholderID and ActivityDate = LogDate WHERE Direction = 1 AND LogOffActivityTime Is Not Null AND LogOnUser = LogOffUser AND LogOnActivityDate = LogOffActivityDate AND not exists(Select CardholderID, ActivityDate, LogOff, LogOn, BreakTime, LogNum, SumDirection from BreakTime " +
@@ -144,11 +232,11 @@ namespace konekcija
                 {
                     cmd.CommandText = query;
                     cmd.ExecuteNonQuery();
-                    MessageBox.Show("Unijeto LogException");
+                    //MessageBox.Show("Unijeto LogException");
                 }
 
                 destinationConnection.Close();
-                MessageBox.Show("numLog izlaz");
+                //MessageBox.Show("numLog izlaz");
 
             }
         }
@@ -193,7 +281,7 @@ namespace konekcija
         public void Logs_update(OleDbConnection sourceConnectionLog, SqlConnection destinationConnection, string tbl)
         {
 
-            MessageBox.Show("Logs ulaz");
+            //MessageBox.Show("Logs ulaz");
             // m1 je maximalni CardholderID a n1 je broj redova u Access tabeli Cardholder
             var commandSourceData1 = new OleDbCommand("Select MAX(LogID) from " + tbl, sourceConnectionLog);
             var commandSourceData2 = new OleDbCommand("Select COUNT(LogID) from " + tbl, sourceConnectionLog);
@@ -227,7 +315,7 @@ namespace konekcija
                         // ispisuje se CardholderID koji se dodaje u tabelu
                         var commandSourceData3 = new OleDbCommand("Select LogID from " + tbl + " where LogID <=" + @m1 + "and LogID >" + @m2, sourceConnectionLog);
                         int c = (int)commandSourceData3.ExecuteScalar();
-                        MessageBox.Show(" Ubacje se LogID " + c);
+                        //MessageBox.Show(" Ubacje se LogID " + c);
 
                         //cita se iz izvorne Access tabele
                         var reader = commandSourceData.ExecuteReader();
@@ -236,7 +324,7 @@ namespace konekcija
                         //pisanje u tabelu
                         try
                         {
-                            MessageBox.Show("");
+                            //MessageBox.Show("");
                             bulkCopy.WriteToServer(reader);
                         }
                         catch (Exception ex) { MessageBox.Show(ex.Message); }
@@ -252,7 +340,7 @@ namespace konekcija
                     //ako je tabela SQL prazna sve kopiramo
                     var commandSourceData = new OleDbCommand("Select LogID, CardCode, CardType, ControllerID, Direction, LocalTime, CardholderID from " + tbl, sourceConnectionLog);
                     var reader = commandSourceData.ExecuteReader();
-                    MessageBox.Show("tabela prazna ----> ima novih logova,kopira se");
+                    // MessageBox.Show("tabela prazna ----> ima novih logova,kopira se");
                     bulkCopy.DestinationTableName = "dbo." + tbl;
                     try { bulkCopy.WriteToServer(reader); }
                     catch (Exception ex) { MessageBox.Show(ex.Message); }
@@ -260,7 +348,7 @@ namespace konekcija
                 }
             }
 
-            MessageBox.Show("Logs izlaz");
+            //MessageBox.Show("Logs izlaz");
             return;
 
         }
@@ -268,7 +356,7 @@ namespace konekcija
         public void Cardholder_update(OleDbConnection sourceConnection, SqlConnection destinationConnection, string tbl)
         {
 
-            MessageBox.Show("Cardholder ulaz");
+            // MessageBox.Show("Cardholder ulaz");
             // m1 je maximalni CardholderID a n1 je broj redova u Access tabeli Cardholder
             var commandSourceData1 = new OleDbCommand("Select MAX(CardholderID) from " + tbl, sourceConnection);
             var commandSourceData2 = new OleDbCommand("Select COUNT(CardholderID) from " + tbl, sourceConnection);
@@ -302,7 +390,7 @@ namespace konekcija
                         // ispisuje se CardholderID koji se dodaje u tabelu
                         var commandSourceData3 = new OleDbCommand("Select CardholderID from " + tbl + " where CardholderID <=" + @m1 + "and CardholderID >" + @m2, sourceConnection);
                         int c = (int)commandSourceData3.ExecuteScalar();
-                        MessageBox.Show(" Ubacje se CardholderID " + c);
+                        //MessageBox.Show(" Ubacje se CardholderID " + c);
 
                         //cita se iz izvorne Access tabele
                         var reader = commandSourceData3.ExecuteReader();
@@ -322,7 +410,7 @@ namespace konekcija
                     //ako je tabela SQL prazna sve kopiramo
                     var commandSourceData = new OleDbCommand("Select CardholderID, Name, FirstName, LastName, Gender from " + tbl, sourceConnection);
                     var reader = commandSourceData.ExecuteReader();
-                    MessageBox.Show("tabela prazna ----> ima novih kardholdera,kopira se");
+                    // MessageBox.Show("tabela prazna ----> ima novih kardholdera,kopira se");
                     bulkCopy.DestinationTableName = "dbo." + tbl;
                     try { bulkCopy.WriteToServer(reader); }
                     catch (Exception ex) { MessageBox.Show(ex.Message); }
@@ -371,13 +459,13 @@ namespace konekcija
                     {
                         if (firstNotSecond[i] != -1 && firstNotSecond[i] != 0)
                         {
-                            MessageBox.Show(" " + firstNotSecond[i]);
+                            //MessageBox.Show(" " + firstNotSecond[i]);
                             int n = (int)firstNotSecond[i];
                             var command = new SqlCommand("Delete from " + tbl + " where CardholderID=" + @firstNotSecond[i], destinationConnection);
                             try
                             {
                                 rdr1 = command.ExecuteReader();
-                                MessageBox.Show("successfully data Deleted", "user information");
+                                //MessageBox.Show("successfully data Deleted", "user information");
                                 while (rdr1.Read())
                                 { }
                             }
@@ -393,14 +481,14 @@ namespace konekcija
             }
             else { }
 
-            MessageBox.Show("Cardholder izlaz");
+            //MessageBox.Show("Cardholder izlaz");
             return;
         }
 
         public void Card_update(OleDbConnection sourceConnection, SqlConnection destinationConnection, string tbl)
         {
 
-            MessageBox.Show("Card ulaz");
+            // MessageBox.Show("Card ulaz");
             // m1 je maximalni CardholderID a n1 je broj redova u Access tabeli Cardholder
             var commandSourceData1 = new OleDbCommand("Select MAX(CardID) from " + tbl, sourceConnection);
             var commandSourceData2 = new OleDbCommand("Select COUNT(CardID) from " + tbl, sourceConnection);
@@ -427,14 +515,14 @@ namespace konekcija
                     // ako broj redova NIJE isti i ako je m1 u accessu veci od m2u SQL kopiraju se oni koji su novi
                     if (n1 != n2 && m1 > m2)
                     {
-                        MessageBox.Show("ima novih kartica, kopira se");
+                        //MessageBox.Show("ima novih kartica, kopira se");
                         // iz  access tablel izvlace se podaci(korisnici) koji su novi
                         var commandSourceData = new OleDbCommand("Select CardID, CardholderID, CardNo, CardNoInt from" + tbl + " where CardID <=" + @m1 + " and CardID >" + @m2, sourceConnection);
 
                         // ispisuje se CardholderID koji se dodaje u tabelu
                         var commandSourceData3 = new OleDbCommand("Select CardID from " + tbl + " where CardID <=" + @m1 + "and CardID >" + @m2, sourceConnection);
                         int c = (int)commandSourceData3.ExecuteScalar();
-                        MessageBox.Show(" Ubacje se CardID " + c);
+                        //MessageBox.Show(" Ubacje se CardID " + c);
 
                         //cita se iz izvorne Access tabele
                         var reader = commandSourceData3.ExecuteReader();
@@ -454,7 +542,7 @@ namespace konekcija
                     //ako je tabela SQL prazna sve kopiramo
                     var commandSourceData = new OleDbCommand("Select CardID, CardNo, CardNoIntCode, CardholderID from " + tbl, sourceConnection);
                     var reader = commandSourceData.ExecuteReader();
-                    MessageBox.Show("tabela prazna ----> ima novih kartica,kopira se");
+                    //MessageBox.Show("tabela prazna ----> ima novih kartica,kopira se");
                     bulkCopy.DestinationTableName = "dbo." + tbl;
                     try { bulkCopy.WriteToServer(reader); }
                     catch (Exception ex) { MessageBox.Show(ex.Message); }
@@ -465,7 +553,7 @@ namespace konekcija
             if (n2 != 0)
             {
                 int m2 = (int)commandDestinationData1.ExecuteScalar();
-                MessageBox.Show(" maksimalni " + m2 + " ,broj redova " + n2);
+                //MessageBox.Show(" maksimalni " + m2 + " ,broj redova " + n2);
                 if (n1 < n2)
                 {
                     // lista  je lista cardholderID-a iz SQL baze
@@ -493,23 +581,23 @@ namespace konekcija
 
                     //svi oni koji su izbrisani iz access baze, tj oni kojih ima u sql ali ne u access,oni se posle brisu, izuzetak je CardholderID=-1 jer on je za neregistrovane korisnike kartica
                     var firstNotSecond = lista.Except(sourceLista).ToList();
-                    MessageBox.Show(" proslo");
+                    //MessageBox.Show(" proslo");
                     //var commandDestinationData4= new SqlCommand("Select * from "+tbl, destinationConnection);
                     Sourcerdr.Close();
 
-                    MessageBox.Show(" proslo");
+                    //MessageBox.Show(" proslo");
                     SqlDataReader rdr1 = null;
                     for (int i = 0; i < firstNotSecond.Count; i++)
                     {
                         if (firstNotSecond[i] != -1)
                         {
-                            MessageBox.Show(" " + firstNotSecond[i]);
+                            //MessageBox.Show(" " + firstNotSecond[i]);
                             int n = (int)firstNotSecond[i];
                             var command = new SqlCommand("Delete from " + tbl + " where CardID=" + @firstNotSecond[i], destinationConnection);
                             try
                             {
                                 rdr1 = command.ExecuteReader();
-                                MessageBox.Show("successfully data Deleted", "user information");
+                                //MessageBox.Show("successfully data Deleted", "user information");
                                 while (rdr1.Read())
                                 { }
                             }
@@ -525,7 +613,7 @@ namespace konekcija
             }
             else { }
 
-            MessageBox.Show("Card izlaz");
+            //MessageBox.Show("Card izlaz");
             return;
         }
 
