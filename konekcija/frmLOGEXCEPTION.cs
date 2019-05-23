@@ -140,9 +140,6 @@ namespace konekcija
                     dgLOGEXCEPTION["worktimeDataGridViewTextBoxColumn", e.RowIndex].Style.BackColor = Color.FromArgb(255, 255, 0);
                 }
             }
-
-
-
             if (dgLOGEXCEPTION.Columns[e.ColumnIndex].Name.Equals("worktimeDataGridViewTextBoxColumn") &&
                 e.RowIndex >= 0 &&
                 dgLOGEXCEPTION["worktimeDataGridViewTextBoxColumn", e.RowIndex].Value is null)
@@ -289,6 +286,20 @@ namespace konekcija
                     }
                 }
             }
+        }
+
+
+        private void dgLOGEXCEPTION_CellClick(object sender, DataGridViewCellEventArgs e) {
+            if (dgLOGEXCEPTION.Columns[e.ColumnIndex].Name.Equals("worktimeDataGridViewTextBoxColumn") &&
+            e.RowIndex >= 0 ) {
+                
+                //var a = dgLOGEXCEPTION["localTime", e.RowIndex].Value;
+                //string c = a.ToString();
+                //DateTime x = Convert.ToDateTime(c);
+                MessageBox.Show("kkkk");
+
+            }
+
         }
 
         private void btnWorkerpresence_Click(object sender, EventArgs e)

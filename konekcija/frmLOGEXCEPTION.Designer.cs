@@ -194,6 +194,7 @@
             this.dgLOGEXCEPTION.TabIndex = 8;
             this.dgLOGEXCEPTION.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgLOGEXCEPTION_CellFormatting);
             this.dgLOGEXCEPTION.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgLOGEXCEPTION_DataBindingComplete);
+            this.dgLOGEXCEPTION.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler (this.dgLOGEXCEPTION_CellClick);
             // 
             // gvCARDHOLDER
             // 

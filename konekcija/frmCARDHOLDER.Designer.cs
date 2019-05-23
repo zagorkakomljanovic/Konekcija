@@ -44,7 +44,7 @@
             this.lblDO = new System.Windows.Forms.Label();
             this.lblOD = new System.Windows.Forms.Label();
             this.btnPRINT = new System.Windows.Forms.Button();
-            this.directionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.direction = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.localTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TotalWorktime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.cardholderBindingSource)).BeginInit();
@@ -110,7 +110,7 @@
             this.dgCHECKLIST.AutoGenerateColumns = false;
             this.dgCHECKLIST.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgCHECKLIST.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.directionDataGridViewTextBoxColumn,
+            this.direction,
             this.localTime,
             this.TotalWorktime});
             this.dgCHECKLIST.DataSource = this.accessLogBindingSource;
@@ -201,13 +201,13 @@
             this.btnPRINT.UseVisualStyleBackColor = true;
             this.btnPRINT.Click += new System.EventHandler(this.btnPRINT_Click);
             // 
-            // directionDataGridViewTextBoxColumn
+            // direction
             // 
-            this.directionDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.directionDataGridViewTextBoxColumn.DataPropertyName = "Direction";
-            this.directionDataGridViewTextBoxColumn.HeaderText = "Direction";
-            this.directionDataGridViewTextBoxColumn.Name = "directionDataGridViewTextBoxColumn";
-            this.directionDataGridViewTextBoxColumn.ReadOnly = true;
+            this.direction.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.direction.DataPropertyName = "Direction";
+            this.direction.HeaderText = "Direction";
+            this.direction.Name = "direction";
+            this.direction.ReadOnly = true;
             // 
             // localTime
             // 
@@ -267,7 +267,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.BindingSource accessLogBindingSource;
         private System.Windows.Forms.Button btnPRINT;
-        private System.Windows.Forms.DataGridViewTextBoxColumn directionDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn direction;
         private System.Windows.Forms.DataGridViewTextBoxColumn localTime;
         private System.Windows.Forms.DataGridViewTextBoxColumn TotalWorktime;
     }
