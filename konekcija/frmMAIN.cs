@@ -24,6 +24,14 @@ namespace konekcija
         SqlConnection destinationConnection;
         OleDbConnection sourceConnection;
 
+        konekcija.MojaEntities _context;
+        List<Cardholder> ListaCARDHOLDER;
+        List<AccessLog> ListaACCESSLOG;
+        List<LogException> ListaLOGEXCEPTION;
+        DateTime? DATUM;
+        int CARDHOLDERID, WORKTIMESUM, DIRECT, indikator, CHECKError;
+        DateTime DATUM1, DATUM2;
+
         public frmMAIN()
         {
             // inicijalizacija same Forme, svih komponenata
@@ -117,132 +125,94 @@ namespace konekcija
             InsertAllTables();
 
         }
-        //akcije na klik dugmeta
-        private void Button1_Click(object sender, EventArgs e)
-        {
-            //kada se klikne laabela mjenja ime na Hello, a pojavljuje se poruka sa sadrzajem "zdravo"
-            //ovo je radjeno samo zbog testiranja
-            //  labela.Text = "Hello ";
-            //  labela.Refresh();
-            //  MessageBox.Show("zdravo");
-            //sakupljanje imena tabela
-            tables.Clear();
-            GetTableNames(connectionStringConf);
-            //komunikacija izmedju dvije baze
-            //lokacija za SQL server
-
-            using (sourceConnection = new OleDbConnection(connectionStringConf))
-            {
-                //otvaranje izvorne baze Access
-                sourceConnection.Open();
-                //konektovanje na SQL bazu
-                using (destinationConnection = new SqlConnection(connectionStringDest))
-                {
-                    //otvaranje SQL baze
-                    destinationConnection.Open();
-
-                    //MessageBox.Show("SQL baza otvorena");
-                    foreach (string tbl in tables)
-                    {
-                        switch (tbl)
-                        {
-                            case "Cardholder":
-                                Cardholder_update(sourceConnection, destinationConnection, tbl);
-                                break;
-                            case "Card":
-                                Card_update(sourceConnection, destinationConnection, tbl);
-                                break;
-                            default:
-                                Console.WriteLine("Default case");
-                                break;
-                        }
-                    }
-                    sourceConnection.Close();
-                    destinationConnection.Close();
-                }
-            }
-
-            tables.Clear();
-            GetTableNames(connectionStringLog);
-
-            using (sourceConnection = new OleDbConnection(connectionStringLog))
-            {
-                //otvaranje izvorne baze Access
-                sourceConnection.Open();
-                //konektovanje na SQL bazu
-                using (destinationConnection = new SqlConnection(connectionStringDest))
-                {
-                    //otvaranje SQL baze
-                    destinationConnection.Open();
-
-                    //MessageBox.Show("SQL baza otvorena");
-                    foreach (string tbl in tables)
-                    {
-                        switch (tbl)
-                        {
-                            case "AccessLog":
-                                Logs_update(sourceConnection, destinationConnection, tbl);
-                                //MessageBox.Show("AccessLog");
-                                break;
-                            default:
-                                Console.WriteLine("Default case");
-                                break;
-                        }
-                    }
-                    sourceConnection.Close();
-                    destinationConnection.Close();
-                }
-            }
-            InsertAllTables();
-
-
-        }
-
-
 
         public void InsertAllTables()
         {
-            using (destinationConnection = new SqlConnection(connectionStringDest))
+             _context = new konekcija.MojaEntities();
+
+            ListaLOGEXCEPTION = _context.LogExceptions.ToList();
+            ListaACCESSLOG = _context.AccessLogs.ToList();
+            ListaCARDHOLDER = _context.Cardholders.ToList();
+            foreach (var i in ListaCARDHOLDER)
             {
-                destinationConnection.Open();
+                CARDHOLDERID = i.CardholderID;
+                ListaACCESSLOG = _context.AccessLogs.Where(w => w.CardholderID == CARDHOLDERID).ToList();
+                indikator = 1;
+                var ListaACCESSLOGa = ListaACCESSLOG.GroupBy(u => u.LocalTime.Value.Date).Select(grp => grp.ToList()).ToList();
 
-
-
-                ////MessageBox.Show("SQL baza otvorena za popunjavanje tabele LogNum");
-                //var commandDestinationData8 = new SqlCommand("INSERT INTO LogNum (CardholderID,  SumDirection, LogNum, LogDate) SELECT CardholderID, Sum(Direction), Count(CardholderID), CAST(LocalTime AS DATE) FROM AccessLog where CardholderID in (select CardholderId from Cardholder) and not exists(select CardholderID, LogDate from LogNum where LogNum.CardholderID = AccessLog.CardholderID and LogNum.LogDate = Cast(AccessLog.LocalTime As date)) and CAST(AccessLog.LocalTime AS DATE) != CAST(GETDATE() As date) group by CardholderID , CAST(LocalTime AS DATE) order by CAST(LocalTime AS DATE)", destinationConnection);
-                //commandDestinationData8.ExecuteScalar();
-
-                ////MessageBox.Show("SQL baza otvorena za popunjavanje tabele TotalTime");
-                //var commandDestinationData9 = new SqlCommand("Insert Into TotalTime (CardholderID, TotalTime, ActivityDate) Select AccessLog.CardholderID, CAST(MAX(LocalTime) - Min(LocalTime)  AS Time) TotalTime, Cast(LocalTime as Date) from AccessLog where CardholderID in (Select CardholderID from Cardholder) and not exists(select CardholderID, ActivityDate from TotalTime where TotalTime.CardholderID = AccessLog.CardholderID and TotalTime.ActivityDate = Cast(AccessLog.LocalTime As date)) and CAST(AccessLog.LocalTime AS DATE) != CAST( GETDATE() As date) group by CardholderID, CAST(LocalTime As date) Order by CAST(LocalTime As date)", destinationConnection);
-                //commandDestinationData9.ExecuteScalar();
-
-                ////MessageBox.Show("SQL baza otvorena za popunjavanje tabele BreakTime");
-                //var commandDestinationData10 = new SqlCommand("; WITH UserActivityWPairedTimes AS (SELECT Direction, ActivityDate = CAST(LocalTime As DATE), LogOnUser = CardholderID, LogOffUser = Lag(CardholderID, 1) OVER(ORDER BY CardholderID, LocalTime), LogOnActivityTime = LocalTime, LogOffActivityTime = Lag(LocalTime, 1) OVER(ORDER BY CardholderID, LocalTime), LogOnActivityDate = CAST(LocalTime AS DATE), LogOffActivityDate = CAST(Lag(LocalTime, 1) OVER(ORDER BY CardholderID, LocalTime) AS DATE) FROM AccessLog)" +
-                //    "Insert Into BreakTime(CardholderID, ActivityDate, LogOff, LogOn, BreakTime, LogNum, SumDirection)" +
-                //    "SELECT LogOnUser CardholderID, ActivityDate, LogOffActivityTime LogOff, LogOnActivityTime LogOn, CONVERT(varchar(12), DATEADD(minute, DATEDIFF(minute, LogOffActivityTime, LogOnActivityTime), 0), 114) BreakTime, LogNum, SumDirection FROM UserActivityWPairedTimes JOIN LogNum On LogOnUser = CardholderID and ActivityDate = LogDate WHERE Direction = 1 AND LogOffActivityTime Is Not Null AND LogOnUser = LogOffUser AND LogOnActivityDate = LogOffActivityDate AND not exists(Select CardholderID, ActivityDate, LogOff, LogOn, BreakTime, LogNum, SumDirection from BreakTime " +
-                //    "where BreakTime.CardholderID = UserActivityWPairedTimes.LogOnUser and BreakTime.ActivityDate = UserActivityWPairedTimes.ActivityDate and BreakTime.LogOff = UserActivityWPairedTimes.LogOffActivityTime and BreakTime.LogOn = UserActivityWPairedTimes.LogOnActivityTime) ORDER BY CardholderID, ActivityDate", destinationConnection);
-                //commandDestinationData10.ExecuteScalar();
-
-
-                var fileContent = File.ReadAllText(@"C:\share\INSERTI.sql");
-                var sqlqueries = fileContent.Split(new[] { " GO " }, StringSplitOptions.RemoveEmptyEntries);
-                var cmd = new SqlCommand("query", destinationConnection);
-
-                foreach (var query in sqlqueries)
+                foreach (var j in ListaACCESSLOGa)
                 {
-                    cmd.CommandText = query;
-                    cmd.ExecuteNonQuery();
-                    //MessageBox.Show("Unijeto LogException");
+                    indikator = 1;
+                    CHECKError = 0;
+                    WORKTIMESUM = 0;
+                    int c = j.Count();
+                    DATUM = j.First().LocalTime;
+                    foreach (var k in j)
+                    {
+                        if (c==1)
+                        {
+                            CHECKError = 2;
+                            WORKTIMESUM = 0;
+                        }
+                        else {
+                            if (k.Direction == 2 && indikator == 1)
+                            {
+                                CHECKError = 2;
+                                continue;
+                            }
+                            else
+                            {
+                                if (c == 2)
+                                {
+                                    CHECKError = 1;
+                                }
+                                else
+                                if (c % 2 != 0)
+                                {
+                                    CHECKError = 2;
+                                }
+                                if (k.Direction == 1)
+                                {
+                                    indikator = 0;
+                                    DATUM1 = k.LocalTime.Value;
+
+                                }
+                                else
+                                {
+                                    if (indikator == 1)
+                                    {
+                                        CHECKError = 2;
+                                    }
+                                    else
+                                    {
+                                        DATUM2 = k.LocalTime.Value;
+                                        TimeSpan timeSpan = DATUM2 - DATUM1;
+
+                                        WORKTIMESUM += Convert.ToInt32(timeSpan.TotalMinutes);
+
+                                        indikator = 1;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+
+                    if (!ListaLOGEXCEPTION.Any(w => w.CardholderID == CARDHOLDERID && w.LogExceptionDate == DATUM.Value.Date) && DATUM.Value.Date != System.DateTime.Now.Date)
+                    {
+
+                            var a = new LogException();
+                            a.Worktime = WORKTIMESUM;
+                            var b = DATUM.Value.Date;
+                            a.LogExceptionDate = b;
+                            a.ExcIN_OUT = CHECKError;
+                            a.CardholderID = CARDHOLDERID;
+                            _context.LogExceptions.AddObject(a);
+                            _context.SaveChanges();
+                        }
                 }
-
-                destinationConnection.Close();
-                //MessageBox.Show("numLog izlaz");
-
             }
         }
-
-
-
 
 
         private void button2_Click(object sender, EventArgs e)

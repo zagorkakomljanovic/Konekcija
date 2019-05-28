@@ -36,6 +36,9 @@
             this.cardholderBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lblRadnik = new System.Windows.Forms.Label();
             this.dgCHECKLIST = new System.Windows.Forms.DataGridView();
+            this.direction = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.localTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TotalWorktime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.accessLogBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtWORKTIME = new System.Windows.Forms.TextBox();
@@ -44,9 +47,6 @@
             this.lblDO = new System.Windows.Forms.Label();
             this.lblOD = new System.Windows.Forms.Label();
             this.btnPRINT = new System.Windows.Forms.Button();
-            this.direction = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.localTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TotalWorktime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.cardholderBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgCHECKLIST)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.accessLogBindingSource)).BeginInit();
@@ -122,6 +122,28 @@
             this.dgCHECKLIST.Size = new System.Drawing.Size(415, 372);
             this.dgCHECKLIST.TabIndex = 4;
             this.dgCHECKLIST.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgCHECKLIST_CellFormatting);
+            // 
+            // direction
+            // 
+            this.direction.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.direction.DataPropertyName = "Direction";
+            this.direction.HeaderText = "Direction";
+            this.direction.Name = "direction";
+            this.direction.ReadOnly = true;
+            // 
+            // localTime
+            // 
+            this.localTime.DataPropertyName = "LocalTime";
+            this.localTime.HeaderText = "LocalTime";
+            this.localTime.Name = "localTime";
+            this.localTime.ReadOnly = true;
+            this.localTime.Width = 150;
+            // 
+            // TotalWorktime
+            // 
+            this.TotalWorktime.HeaderText = "Worktime";
+            this.TotalWorktime.Name = "TotalWorktime";
+            this.TotalWorktime.ReadOnly = true;
             // 
             // accessLogBindingSource
             // 
@@ -200,28 +222,6 @@
             this.btnPRINT.Text = "Print";
             this.btnPRINT.UseVisualStyleBackColor = true;
             this.btnPRINT.Click += new System.EventHandler(this.btnPRINT_Click);
-            // 
-            // direction
-            // 
-            this.direction.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.direction.DataPropertyName = "Direction";
-            this.direction.HeaderText = "Direction";
-            this.direction.Name = "direction";
-            this.direction.ReadOnly = true;
-            // 
-            // localTime
-            // 
-            this.localTime.DataPropertyName = "LocalTime";
-            this.localTime.HeaderText = "LocalTime";
-            this.localTime.Name = "localTime";
-            this.localTime.ReadOnly = true;
-            this.localTime.Width = 150;
-            // 
-            // TotalWorktime
-            // 
-            this.TotalWorktime.HeaderText = "Worktime";
-            this.TotalWorktime.Name = "TotalWorktime";
-            this.TotalWorktime.ReadOnly = true;
             // 
             // frmCARDHOLDER
             // 

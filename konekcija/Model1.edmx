@@ -74,17 +74,7 @@
           <Property Name="ExceptionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Worktime" Type="int" />
           <Property Name="LogExceptionDate" Type="date" />
-          <Property Name="ExcIN_OUT" Type="bit" />
-          <Property Name="CardholderID" Type="int" />
-        </EntityType>
-        <EntityType Name="LogNum">
-          <Key>
-            <PropertyRef Name="LogNumID" />
-          </Key>
-          <Property Name="LogNumID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="SumDirection" Type="int" />
-          <Property Name="LogNum" Type="int" />
-          <Property Name="LogDate" Type="date" />
+          <Property Name="ExcIN_OUT" Type="int" />
           <Property Name="CardholderID" Type="int" />
         </EntityType>
         <EntityType Name="NonWorkingDays">
@@ -120,15 +110,6 @@
           <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
-        </EntityType>
-        <EntityType Name="TotalTime">
-          <Key>
-            <PropertyRef Name="TotalTimeID" />
-          </Key>
-          <Property Name="TotalTimeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ActivityDate" Type="date" />
-          <Property Name="TotalTime" Type="time" Precision="7" />
-          <Property Name="CardholderID" Type="int" />
         </EntityType>
         <Association Name="FK_AccessLog_Cardholder">
           <End Role="Cardholder" Type="Self.Cardholder" Multiplicity="0..1">
@@ -228,20 +209,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_LogNum_Cardholder">
-          <End Role="Cardholder" Type="Self.Cardholder" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="LogNum" Type="Self.LogNum" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Cardholder">
-              <PropertyRef Name="CardholderID" />
-            </Principal>
-            <Dependent Role="LogNum">
-              <PropertyRef Name="CardholderID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_NonWorkingDays_Cardholder">
           <End Role="Cardholder" Type="Self.Cardholder" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
@@ -256,20 +223,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TotalTime_Cardholder">
-          <End Role="Cardholder" Type="Self.Cardholder" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="TotalTime" Type="Self.TotalTime" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Cardholder">
-              <PropertyRef Name="CardholderID" />
-            </Principal>
-            <Dependent Role="TotalTime">
-              <PropertyRef Name="CardholderID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="MojaModelStoreContainer">
           <EntitySet Name="AccessLog" EntityType="Self.AccessLog" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BreakTime" EntityType="Self.BreakTime" Schema="dbo" store:Type="Tables" />
@@ -278,11 +231,9 @@
           <EntitySet Name="CardholderShift" EntityType="Self.CardholderShift" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Holiday" EntityType="Self.Holiday" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LogException" EntityType="Self.LogException" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="LogNum" EntityType="Self.LogNum" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NonWorkingDays" EntityType="Self.NonWorkingDays" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Shift" EntityType="Self.Shift" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TotalTime" EntityType="Self.TotalTime" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_AccessLog_Cardholder" Association="Self.FK_AccessLog_Cardholder">
             <End Role="Cardholder" EntitySet="Cardholder" />
             <End Role="AccessLog" EntitySet="AccessLog" />
@@ -311,17 +262,9 @@
             <End Role="Cardholder" EntitySet="Cardholder" />
             <End Role="LogException" EntitySet="LogException" />
           </AssociationSet>
-          <AssociationSet Name="FK_LogNum_Cardholder" Association="Self.FK_LogNum_Cardholder">
-            <End Role="Cardholder" EntitySet="Cardholder" />
-            <End Role="LogNum" EntitySet="LogNum" />
-          </AssociationSet>
           <AssociationSet Name="FK_NonWorkingDays_Cardholder" Association="Self.FK_NonWorkingDays_Cardholder">
             <End Role="Cardholder" EntitySet="Cardholder" />
             <End Role="NonWorkingDays" EntitySet="NonWorkingDays" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TotalTime_Cardholder" Association="Self.FK_TotalTime_Cardholder">
-            <End Role="Cardholder" EntitySet="Cardholder" />
-            <End Role="TotalTime" EntitySet="TotalTime" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -336,11 +279,9 @@
           <EntitySet Name="CardholderShifts" EntityType="MojaModel.CardholderShift" />
           <EntitySet Name="Holidays" EntityType="MojaModel.Holiday" />
           <EntitySet Name="LogExceptions" EntityType="MojaModel.LogException" />
-          <EntitySet Name="LogNums" EntityType="MojaModel.LogNum" />
           <EntitySet Name="NonWorkingDays" EntityType="MojaModel.NonWorkingDay" />
           <EntitySet Name="Shifts" EntityType="MojaModel.Shift" />
           <EntitySet Name="sysdiagrams" EntityType="MojaModel.sysdiagram" />
-          <EntitySet Name="TotalTimes" EntityType="MojaModel.TotalTime" />
           <AssociationSet Name="FK_AccessLog_Cardholder" Association="MojaModel.FK_AccessLog_Cardholder">
             <End Role="Cardholder" EntitySet="Cardholders" />
             <End Role="AccessLog" EntitySet="AccessLogs" />
@@ -365,17 +306,9 @@
             <End Role="Cardholder" EntitySet="Cardholders" />
             <End Role="LogException" EntitySet="LogExceptions" />
           </AssociationSet>
-          <AssociationSet Name="FK_LogNum_Cardholder" Association="MojaModel.FK_LogNum_Cardholder">
-            <End Role="Cardholder" EntitySet="Cardholders" />
-            <End Role="LogNum" EntitySet="LogNums" />
-          </AssociationSet>
           <AssociationSet Name="FK_NonWorkingDays_Cardholder" Association="MojaModel.FK_NonWorkingDays_Cardholder">
             <End Role="Cardholder" EntitySet="Cardholders" />
             <End Role="NonWorkingDay" EntitySet="NonWorkingDays" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TotalTime_Cardholder" Association="MojaModel.FK_TotalTime_Cardholder">
-            <End Role="Cardholder" EntitySet="Cardholders" />
-            <End Role="TotalTime" EntitySet="TotalTimes" />
           </AssociationSet>
           <AssociationSet Name="FK_CardholderShift_Shift" Association="MojaModel.FK_CardholderShift_Shift">
             <End Role="Shift" EntitySet="Shifts" />
@@ -434,9 +367,7 @@
           <NavigationProperty Name="CardholderShifts" Relationship="MojaModel.FK_CardholderShift_Cardholder" FromRole="Cardholder" ToRole="CardholderShift" />
           <NavigationProperty Name="Holidays" Relationship="MojaModel.FK_Holiday_Cardholder" FromRole="Cardholder" ToRole="Holiday" />
           <NavigationProperty Name="LogExceptions" Relationship="MojaModel.FK_LogException_Cardholder" FromRole="Cardholder" ToRole="LogException" />
-          <NavigationProperty Name="LogNums" Relationship="MojaModel.FK_LogNum_Cardholder" FromRole="Cardholder" ToRole="LogNum" />
           <NavigationProperty Name="NonWorkingDays" Relationship="MojaModel.FK_NonWorkingDays_Cardholder" FromRole="Cardholder" ToRole="NonWorkingDay" />
-          <NavigationProperty Name="TotalTimes" Relationship="MojaModel.FK_TotalTime_Cardholder" FromRole="Cardholder" ToRole="TotalTime" />
         </EntityType>
         <EntityType Name="CardholderShift">
           <Key>
@@ -466,20 +397,9 @@
           <Property Name="ExceptionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Worktime" Type="Int32" />
           <Property Name="LogExceptionDate" Type="DateTime" Precision="0" />
-          <Property Name="ExcIN_OUT" Type="Boolean" />
+          <Property Name="ExcIN_OUT" Type="Int32" />
           <Property Name="CardholderID" Type="Int32" />
           <NavigationProperty Name="Cardholder" Relationship="MojaModel.FK_LogException_Cardholder" FromRole="LogException" ToRole="Cardholder" />
-        </EntityType>
-        <EntityType Name="LogNum">
-          <Key>
-            <PropertyRef Name="LogNumID" />
-          </Key>
-          <Property Name="LogNumID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SumDirection" Type="Int32" />
-          <Property Name="LogNum1" Type="Int32" />
-          <Property Name="LogDate" Type="DateTime" Precision="0" />
-          <Property Name="CardholderID" Type="Int32" />
-          <NavigationProperty Name="Cardholder" Relationship="MojaModel.FK_LogNum_Cardholder" FromRole="LogNum" ToRole="Cardholder" />
         </EntityType>
         <EntityType Name="NonWorkingDay">
           <Key>
@@ -516,16 +436,6 @@
           <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-        </EntityType>
-        <EntityType Name="TotalTime">
-          <Key>
-            <PropertyRef Name="TotalTimeID" />
-          </Key>
-          <Property Name="TotalTimeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ActivityDate" Type="DateTime" Precision="0" />
-          <Property Name="TotalTime1" Type="Time" Precision="7" />
-          <Property Name="CardholderID" Type="Int32" />
-          <NavigationProperty Name="Cardholder" Relationship="MojaModel.FK_TotalTime_Cardholder" FromRole="TotalTime" ToRole="Cardholder" />
         </EntityType>
         <Association Name="FK_AccessLog_Cardholder">
           <End Type="MojaModel.Cardholder" Role="Cardholder" Multiplicity="0..1">
@@ -611,20 +521,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_LogNum_Cardholder">
-          <End Type="MojaModel.Cardholder" Role="Cardholder" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="MojaModel.LogNum" Role="LogNum" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Cardholder">
-              <PropertyRef Name="CardholderID" />
-            </Principal>
-            <Dependent Role="LogNum">
-              <PropertyRef Name="CardholderID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_NonWorkingDays_Cardholder">
           <End Type="MojaModel.Cardholder" Role="Cardholder" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
@@ -635,20 +531,6 @@
               <PropertyRef Name="CardholderID" />
             </Principal>
             <Dependent Role="NonWorkingDay">
-              <PropertyRef Name="CardholderID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_TotalTime_Cardholder">
-          <End Type="MojaModel.Cardholder" Role="Cardholder" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="MojaModel.TotalTime" Role="TotalTime" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Cardholder">
-              <PropertyRef Name="CardholderID" />
-            </Principal>
-            <Dependent Role="TotalTime">
               <PropertyRef Name="CardholderID" />
             </Dependent>
           </ReferentialConstraint>
@@ -752,17 +634,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="LogNums">
-            <EntityTypeMapping TypeName="MojaModel.LogNum">
-              <MappingFragment StoreEntitySet="LogNum">
-                <ScalarProperty Name="CardholderID" ColumnName="CardholderID" />
-                <ScalarProperty Name="LogDate" ColumnName="LogDate" />
-                <ScalarProperty Name="LogNum1" ColumnName="LogNum" />
-                <ScalarProperty Name="SumDirection" ColumnName="SumDirection" />
-                <ScalarProperty Name="LogNumID" ColumnName="LogNumID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="NonWorkingDays">
             <EntityTypeMapping TypeName="MojaModel.NonWorkingDay">
               <MappingFragment StoreEntitySet="NonWorkingDays">
@@ -797,16 +668,6 @@
                 <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
                 <ScalarProperty Name="name" ColumnName="name" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TotalTimes">
-            <EntityTypeMapping TypeName="MojaModel.TotalTime">
-              <MappingFragment StoreEntitySet="TotalTime">
-                <ScalarProperty Name="CardholderID" ColumnName="CardholderID" />
-                <ScalarProperty Name="TotalTime1" ColumnName="TotalTime" />
-                <ScalarProperty Name="ActivityDate" ColumnName="ActivityDate" />
-                <ScalarProperty Name="TotalTimeID" ColumnName="TotalTimeID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

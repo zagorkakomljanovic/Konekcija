@@ -80,17 +80,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="LogNums">
-      <EntityTypeMapping TypeName="MojaModel.LogNum">
-        <MappingFragment StoreEntitySet="LogNum">
-          <ScalarProperty Name="CardholderID" ColumnName="CardholderID" />
-          <ScalarProperty Name="LogDate" ColumnName="LogDate" />
-          <ScalarProperty Name="LogNum1" ColumnName="LogNum" />
-          <ScalarProperty Name="SumDirection" ColumnName="SumDirection" />
-          <ScalarProperty Name="LogNumID" ColumnName="LogNumID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="NonWorkingDays">
       <EntityTypeMapping TypeName="MojaModel.NonWorkingDay">
         <MappingFragment StoreEntitySet="NonWorkingDays">
@@ -125,16 +114,6 @@
           <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
           <ScalarProperty Name="principal_id" ColumnName="principal_id" />
           <ScalarProperty Name="name" ColumnName="name" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="TotalTimes">
-      <EntityTypeMapping TypeName="MojaModel.TotalTime">
-        <MappingFragment StoreEntitySet="TotalTime">
-          <ScalarProperty Name="CardholderID" ColumnName="CardholderID" />
-          <ScalarProperty Name="TotalTime1" ColumnName="TotalTime" />
-          <ScalarProperty Name="ActivityDate" ColumnName="ActivityDate" />
-          <ScalarProperty Name="TotalTimeID" ColumnName="TotalTimeID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

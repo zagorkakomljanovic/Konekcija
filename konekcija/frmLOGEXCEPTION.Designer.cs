@@ -29,14 +29,13 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.chkIN_OUT = new System.Windows.Forms.CheckBox();
             this.chkWORKTIME = new System.Windows.Forms.CheckBox();
             this.cboxCARDHOLDER = new System.Windows.Forms.ComboBox();
             this.cardholderBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lblRadnik = new System.Windows.Forms.Label();
-            this.accessLogBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.lblDO = new System.Windows.Forms.Label();
             this.lblOD = new System.Windows.Forms.Label();
@@ -48,12 +47,18 @@
             this.worktimeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.logExceptionBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnWorkerpresence = new System.Windows.Forms.Button();
+            this.dgLogDetails = new System.Windows.Forms.DataGridView();
+            this.direction = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.localTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.accessLogBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.label1 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cardholderBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.accessLogBindingSource)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgLOGEXCEPTION)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.logExceptionBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgLogDetails)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.accessLogBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -172,8 +177,8 @@
             // 
             this.dgLOGEXCEPTION.AllowUserToAddRows = false;
             this.dgLOGEXCEPTION.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle2.NullValue = null;
-            this.dgLOGEXCEPTION.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle7.NullValue = null;
+            this.dgLOGEXCEPTION.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
             this.dgLOGEXCEPTION.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -190,11 +195,11 @@
             this.dgLOGEXCEPTION.Name = "dgLOGEXCEPTION";
             this.dgLOGEXCEPTION.ReadOnly = true;
             this.dgLOGEXCEPTION.RowTemplate.Height = 24;
-            this.dgLOGEXCEPTION.Size = new System.Drawing.Size(435, 209);
+            this.dgLOGEXCEPTION.Size = new System.Drawing.Size(500, 300);
             this.dgLOGEXCEPTION.TabIndex = 8;
+            this.dgLOGEXCEPTION.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgLOGEXCEPTION_CellClick);
             this.dgLOGEXCEPTION.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgLOGEXCEPTION_CellFormatting);
             this.dgLOGEXCEPTION.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgLOGEXCEPTION_DataBindingComplete);
-            this.dgLOGEXCEPTION.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler (this.dgLOGEXCEPTION_CellClick);
             // 
             // gvCARDHOLDER
             // 
@@ -230,11 +235,63 @@
             this.btnWorkerpresence.UseVisualStyleBackColor = true;
             this.btnWorkerpresence.Click += new System.EventHandler(this.btnWorkerpresence_Click);
             // 
+            // dgLogDetails
+            // 
+            this.dgLogDetails.AllowUserToAddRows = false;
+            this.dgLogDetails.AllowUserToDeleteRows = false;
+            this.dgLogDetails.AutoGenerateColumns = false;
+            this.dgLogDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgLogDetails.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.direction,
+            this.localTime});
+            this.dgLogDetails.DataSource = this.accessLogBindingSource;
+            this.dgLogDetails.Location = new System.Drawing.Point(615, 199);
+            this.dgLogDetails.Name = "dgLogDetails";
+            this.dgLogDetails.ReadOnly = true;
+            this.dgLogDetails.Size = new System.Drawing.Size(304, 209);
+            this.dgLogDetails.TabIndex = 10;
+            this.dgLogDetails.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.LogDetails_CellContentClick);
+            this.dgLogDetails.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgLogDetails_CellFormatting);
+            // 
+            // direction
+            // 
+            this.direction.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.direction.DataPropertyName = "Direction";
+            this.direction.HeaderText = "Direction";
+            this.direction.Name = "direction";
+            this.direction.ReadOnly = true;
+            // 
+            // localTime
+            // 
+            this.localTime.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.localTime.DataPropertyName = "LocalTime";
+            this.localTime.HeaderText = "LocalTime";
+            this.localTime.Name = "localTime";
+            this.localTime.ReadOnly = true;
+            // 
+            // accessLogBindingSource
+            // 
+            this.accessLogBindingSource.DataSource = typeof(konekcija.AccessLog);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(679, 166);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(151, 17);
+            this.label1.TabIndex = 11;
+            this.label1.Text = "Check IN-OUT Time";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
+            // 
             // frmLOGEXCEPTION
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(499, 431);
+            this.ClientSize = new System.Drawing.Size(960, 510);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.dgLogDetails);
             this.Controls.Add(this.btnWorkerpresence);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.dgLOGEXCEPTION);
@@ -248,11 +305,12 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cardholderBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.accessLogBindingSource)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgLOGEXCEPTION)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.logExceptionBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgLogDetails)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.accessLogBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -268,7 +326,6 @@
         private System.Windows.Forms.Label lblOD;
         private System.Windows.Forms.DateTimePicker dateTimePicker2;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.BindingSource accessLogBindingSource;
         private System.Windows.Forms.BindingSource cardholderBindingSource;
         private System.Windows.Forms.DataGridView dgLOGEXCEPTION;
         private System.Windows.Forms.CheckBox chkIN_OUT;
@@ -279,5 +336,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn LogExceptionDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn worktimeDataGridViewTextBoxColumn;
         private System.Windows.Forms.Button btnWorkerpresence;
+        private System.Windows.Forms.DataGridView dgLogDetails;
+        private System.Windows.Forms.BindingSource accessLogBindingSource;
+        private System.Windows.Forms.DataGridViewTextBoxColumn direction;
+        private System.Windows.Forms.DataGridViewTextBoxColumn localTime;
+        private System.Windows.Forms.Label label1;
     }
 }

@@ -82,6 +82,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frmLogErrorDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLogErrorDetails.Designer.cs">
+      <DependentUpon>frmLogErrorDetails.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\frmREPORT.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -14,9 +14,13 @@ namespace konekcija
     {
         konekcija.MojaEntities _context;
         
-        //List<AccessLog> Lista1;
-        //List<Card> Lista2;
         List<LogException> ListaLOGEXCEPTION;
+        List<AccessLog> Lista1, ListaACCESSLOG;
+        int? DIRECT;
+        DateTime DATUM1;
+        DateTime DATUM2;
+        int WORKTIMESUM;
+        int indikator;
 
 
         int CARDHOLDERID;
@@ -35,6 +39,7 @@ namespace konekcija
             CARDHOLDERID = 0;
             ListaLOGEXCEPTION = null;
 
+            dgLogDetails.Visible = false;
 
             if (cboxCARDHOLDER.Text == "" || cboxCARDHOLDER.Text == "AccessLog")
             {
@@ -71,6 +76,8 @@ namespace konekcija
             cboxCARDHOLDER.Text = "";
 
             ListaLOGEXCEPTION = _context.LogExceptions.ToList();
+            Lista1 = _context.AccessLogs.ToList();
+            //dgLogDetails.DataSource = Lista1;
         }
 
         private void dgLOGEXCEPTION_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
@@ -287,16 +294,59 @@ namespace konekcija
                 }
             }
         }
-
+        
 
         private void dgLOGEXCEPTION_CellClick(object sender, DataGridViewCellEventArgs e) {
-            if (dgLOGEXCEPTION.Columns[e.ColumnIndex].Name.Equals("worktimeDataGridViewTextBoxColumn") &&
-            e.RowIndex >= 0 ) {
-                
-                //var a = dgLOGEXCEPTION["localTime", e.RowIndex].Value;
-                //string c = a.ToString();
-                //DateTime x = Convert.ToDateTime(c);
-                MessageBox.Show("kkkk");
+            
+            if (dgLOGEXCEPTION.CurrentCell == null ||  e.RowIndex == -1) return;
+
+
+            if (e.RowIndex >= 0) {
+                DataGridViewRow row = this.dgLOGEXCEPTION.Rows[e.RowIndex];
+
+                   
+                    var a = row.Cells["LogExceptionDate"].Value;
+                    string c = a.ToString();
+                    DateTime x = Convert.ToDateTime(c);
+                    dgLogDetails.DataSource = null;
+                    Lista1.Clear();
+                    Lista1 = _context.AccessLogs.ToList();
+                    Lista1 = Lista1.Where(i => ((CARDHOLDERID == 0) ? true : (i.LocalTime.Value.Date == x.Date) && (i.CardholderID == CARDHOLDERID))).ToList();
+                    dgLogDetails.DataSource = Lista1;
+                    dgLogDetails.Visible = true;
+
+
+           
+
+
+            }
+
+        }
+        private void dgLogDetails_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dgLogDetails.Columns[e.ColumnIndex].Name.Equals("direction") && e.RowIndex >= 0 && dgLogDetails["direction", e.RowIndex].Value is int)
+            {
+
+                switch ((int)dgLogDetails["direction", e.RowIndex].Value)
+                {
+                    case 2:
+
+                        e.Value = "OUT";
+                        e.FormattingApplied = true;
+                        break;
+                    case 1:
+                        e.Value = "IN";
+                        e.FormattingApplied = true;
+                        break;
+                }
+            }
+            if (dgLogDetails.Columns[e.ColumnIndex].Name.Equals("localTime") &&
+                e.RowIndex >= 0 )
+            {
+                var a = dgLogDetails["localTime", e.RowIndex].Value;
+                string c = a.ToString();
+                DateTime x = Convert.ToDateTime(c);
+                e.Value = x.ToLongTimeString();
 
             }
 
@@ -306,6 +356,62 @@ namespace konekcija
         {
             Form frm = new frmCARDHOLDER();
             frm.ShowDialog();
+        }
+
+        private void LogDetails_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            // RACUNANJE AKTIVNOG VREMENA NA POSLU
+
+            WORKTIMESUM = 0;
+            DIRECT = _context.AccessLogs.Where(w => w.LocalTime >= dateTimePicker1.Value.Date && w.LocalTime <= dateTimePicker2.Value.Date && w.CardholderID == CARDHOLDERID).Select(s => s.Direction).First();
+
+            if (DIRECT == 1)
+            {
+
+                ListaACCESSLOG = _context.AccessLogs.Where(w => w.LocalTime >= dateTimePicker1.Value.Date && w.LocalTime <= dateTimePicker2.Value.Date && w.CardholderID == CARDHOLDERID).ToList();
+
+                foreach (var item in ListaACCESSLOG)
+                {
+                    //   DIRECT = item.Direction;
+                    if (item.Direction == 1)
+                    {
+                        indikator = 0;
+                        DATUM1 = item.LocalTime.Value;
+                    }
+                    else
+                    {
+                        if (indikator == 1)
+                        {
+
+                        }
+                        else
+                        {
+                            DATUM2 = item.LocalTime.Value;
+                            TimeSpan timeSpan = DATUM2 - DATUM1;
+
+                            WORKTIMESUM += Convert.ToInt32(timeSpan.TotalMinutes);
+
+                            var queryLogException = _context.LogExceptions.Where(w => w.LogExceptionDate == dateTimePicker1.Value.Date && w.CardholderID == CARDHOLDERID).ToList();
+                            var i = queryLogException[0];
+                            i.Worktime = WORKTIMESUM;
+
+                            _context.SaveChanges();
+
+                            indikator = 1;
+                        }
+                    }
+                }
+            }
         }
     }
     
