@@ -47,6 +47,7 @@
             this.lblDO = new System.Windows.Forms.Label();
             this.lblOD = new System.Windows.Forms.Label();
             this.btnPRINT = new System.Windows.Forms.Button();
+            this.btnFIRM = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.cardholderBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgCHECKLIST)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.accessLogBindingSource)).BeginInit();
@@ -61,7 +62,6 @@
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(151, 20);
             this.dateTimePicker1.TabIndex = 0;
-            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.CreateQuery);
             // 
             // dateTimePicker2
             // 
@@ -70,7 +70,6 @@
             this.dateTimePicker2.Name = "dateTimePicker2";
             this.dateTimePicker2.Size = new System.Drawing.Size(151, 20);
             this.dateTimePicker2.TabIndex = 1;
-            this.dateTimePicker2.ValueChanged += new System.EventHandler(this.CreateQuery);
             // 
             // cboxCARDHOLDER
             // 
@@ -215,13 +214,24 @@
             // 
             // btnPRINT
             // 
-            this.btnPRINT.Location = new System.Drawing.Point(349, 44);
+            this.btnPRINT.Location = new System.Drawing.Point(349, 183);
             this.btnPRINT.Name = "btnPRINT";
             this.btnPRINT.Size = new System.Drawing.Size(95, 36);
             this.btnPRINT.TabIndex = 7;
             this.btnPRINT.Text = "Print";
             this.btnPRINT.UseVisualStyleBackColor = true;
             this.btnPRINT.Click += new System.EventHandler(this.btnPRINT_Click);
+            // 
+            // btnFIRM
+            // 
+            this.btnFIRM.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnFIRM.Location = new System.Drawing.Point(369, 44);
+            this.btnFIRM.Name = "btnFIRM";
+            this.btnFIRM.Size = new System.Drawing.Size(75, 23);
+            this.btnFIRM.TabIndex = 8;
+            this.btnFIRM.Text = "Firm";
+            this.btnFIRM.UseVisualStyleBackColor = true;
+            this.btnFIRM.Click += new System.EventHandler(this.btnFIRM_Click);
             // 
             // frmCARDHOLDER
             // 
@@ -230,6 +240,7 @@
             this.AutoScroll = true;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(475, 626);
+            this.Controls.Add(this.btnFIRM);
             this.Controls.Add(this.btnPRINT);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -270,5 +281,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn direction;
         private System.Windows.Forms.DataGridViewTextBoxColumn localTime;
         private System.Windows.Forms.DataGridViewTextBoxColumn TotalWorktime;
+        private System.Windows.Forms.Button btnFIRM;
     }
 }

@@ -8,6 +8,7 @@
 //------------------------------------------------------------------------------
 
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data.EntityClient;
 using System.Data.Objects;
@@ -236,6 +237,9 @@ namespace konekcija
                 return _sysdiagrams;
             }
         }
+
+        public IEnumerable<object> Firms { get; internal set; }
+
         private ObjectSet<sysdiagram> _sysdiagrams;
 
         #endregion

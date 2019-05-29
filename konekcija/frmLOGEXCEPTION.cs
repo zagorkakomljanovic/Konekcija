@@ -141,21 +141,31 @@ namespace konekcija
             {
                 int a = (int)dgLOGEXCEPTION["worktimeDataGridViewTextBoxColumn", e.RowIndex].Value;
                 e.Value = (a / 60 + ":" + a % 60).ToString();
+                DataGridViewRow row = this.dgLOGEXCEPTION.Rows[e.RowIndex];
+                var b = Convert.ToInt16(row.Cells["ExcIN_OUT"].Value);
 
-                if (a < 480)
+                if ((a < 480 && a>0 && b==0)||(b==1))
                 {
                     dgLOGEXCEPTION["worktimeDataGridViewTextBoxColumn", e.RowIndex].Style.BackColor = Color.FromArgb(255, 255, 0);
                 }
+                else if(b==2)
+                {
+                    dgLOGEXCEPTION["worktimeDataGridViewTextBoxColumn", e.RowIndex].Style.BackColor = Color.FromArgb(255, 0, 0);
+                }
+                else
+                    dgLOGEXCEPTION["worktimeDataGridViewTextBoxColumn", e.RowIndex].Style.BackColor = Color.FromArgb(0, 255, 0);
+
             }
-            if (dgLOGEXCEPTION.Columns[e.ColumnIndex].Name.Equals("worktimeDataGridViewTextBoxColumn") &&
-                e.RowIndex >= 0 &&
-                dgLOGEXCEPTION["worktimeDataGridViewTextBoxColumn", e.RowIndex].Value is null)
-            {
-                string a = (string)dgLOGEXCEPTION["worktimeDataGridViewTextBoxColumn", e.RowIndex].Value;
-                e.Value = "ERROR";
-                dgLOGEXCEPTION["worktimeDataGridViewTextBoxColumn", e.RowIndex].Style.BackColor = Color.FromArgb(255, 0, 0);
-            }
-            
+
+            //if (dgLOGEXCEPTION.Columns[e.ColumnIndex].Name.Equals("worktimeDataGridViewTextBoxColumn") &&
+            //    e.RowIndex >= 0 &&
+            //    dgLOGEXCEPTION["worktimeDataGridViewTextBoxColumn", e.RowIndex].Value is null)
+            //{
+            //    string a = (string)dgLOGEXCEPTION["worktimeDataGridViewTextBoxColumn", e.RowIndex].Value;
+            //    e.Value = "ERROR";
+            //    dgLOGEXCEPTION["worktimeDataGridViewTextBoxColumn", e.RowIndex].Style.BackColor = Color.FromArgb(255, 0, 0);
+            //}
+
         }
 
         private void chkWORKTIME_CheckedChanged(object sender, EventArgs e)
@@ -314,11 +324,6 @@ namespace konekcija
                     Lista1 = Lista1.Where(i => ((CARDHOLDERID == 0) ? true : (i.LocalTime.Value.Date == x.Date) && (i.CardholderID == CARDHOLDERID))).ToList();
                     dgLogDetails.DataSource = Lista1;
                     dgLogDetails.Visible = true;
-
-
-           
-
-
             }
 
         }

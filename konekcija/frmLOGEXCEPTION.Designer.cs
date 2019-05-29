@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.chkIN_OUT = new System.Windows.Forms.CheckBox();
             this.chkWORKTIME = new System.Windows.Forms.CheckBox();
@@ -42,9 +42,6 @@
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.dgLOGEXCEPTION = new System.Windows.Forms.DataGridView();
-            this.gvCARDHOLDER = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LogExceptionDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.worktimeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.logExceptionBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnWorkerpresence = new System.Windows.Forms.Button();
             this.dgLogDetails = new System.Windows.Forms.DataGridView();
@@ -52,6 +49,10 @@
             this.localTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.accessLogBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label1 = new System.Windows.Forms.Label();
+            this.gvCARDHOLDER = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ExcIN_OUT = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LogExceptionDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.worktimeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cardholderBindingSource)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -177,8 +178,8 @@
             // 
             this.dgLOGEXCEPTION.AllowUserToAddRows = false;
             this.dgLOGEXCEPTION.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle7.NullValue = null;
-            this.dgLOGEXCEPTION.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle3.NullValue = null;
+            this.dgLOGEXCEPTION.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dgLOGEXCEPTION.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -187,6 +188,7 @@
             this.dgLOGEXCEPTION.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgLOGEXCEPTION.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.gvCARDHOLDER,
+            this.ExcIN_OUT,
             this.LogExceptionDate,
             this.worktimeDataGridViewTextBoxColumn});
             this.dgLOGEXCEPTION.DataSource = this.logExceptionBindingSource;
@@ -200,26 +202,6 @@
             this.dgLOGEXCEPTION.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgLOGEXCEPTION_CellClick);
             this.dgLOGEXCEPTION.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgLOGEXCEPTION_CellFormatting);
             this.dgLOGEXCEPTION.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgLOGEXCEPTION_DataBindingComplete);
-            // 
-            // gvCARDHOLDER
-            // 
-            this.gvCARDHOLDER.HeaderText = "Cardholder";
-            this.gvCARDHOLDER.Name = "gvCARDHOLDER";
-            this.gvCARDHOLDER.ReadOnly = true;
-            // 
-            // LogExceptionDate
-            // 
-            this.LogExceptionDate.DataPropertyName = "LogExceptionDate";
-            this.LogExceptionDate.HeaderText = "LogExceptionDate";
-            this.LogExceptionDate.Name = "LogExceptionDate";
-            this.LogExceptionDate.ReadOnly = true;
-            // 
-            // worktimeDataGridViewTextBoxColumn
-            // 
-            this.worktimeDataGridViewTextBoxColumn.DataPropertyName = "Worktime";
-            this.worktimeDataGridViewTextBoxColumn.HeaderText = "Worktime";
-            this.worktimeDataGridViewTextBoxColumn.Name = "worktimeDataGridViewTextBoxColumn";
-            this.worktimeDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // logExceptionBindingSource
             // 
@@ -239,7 +221,9 @@
             // 
             this.dgLogDetails.AllowUserToAddRows = false;
             this.dgLogDetails.AllowUserToDeleteRows = false;
+            this.dgLogDetails.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.dgLogDetails.AutoGenerateColumns = false;
+            this.dgLogDetails.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgLogDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgLogDetails.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.direction,
@@ -275,6 +259,7 @@
             // 
             // label1
             // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -284,6 +269,34 @@
             this.label1.TabIndex = 11;
             this.label1.Text = "Check IN-OUT Time";
             this.label1.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // gvCARDHOLDER
+            // 
+            this.gvCARDHOLDER.HeaderText = "Cardholder";
+            this.gvCARDHOLDER.Name = "gvCARDHOLDER";
+            this.gvCARDHOLDER.ReadOnly = true;
+            // 
+            // ExcIN_OUT
+            // 
+            this.ExcIN_OUT.DataPropertyName = "ExcIN_OUT";
+            this.ExcIN_OUT.HeaderText = "ExcIN_OUT";
+            this.ExcIN_OUT.Name = "ExcIN_OUT";
+            this.ExcIN_OUT.ReadOnly = true;
+            this.ExcIN_OUT.Visible = false;
+            // 
+            // LogExceptionDate
+            // 
+            this.LogExceptionDate.DataPropertyName = "LogExceptionDate";
+            this.LogExceptionDate.HeaderText = "LogExceptionDate";
+            this.LogExceptionDate.Name = "LogExceptionDate";
+            this.LogExceptionDate.ReadOnly = true;
+            // 
+            // worktimeDataGridViewTextBoxColumn
+            // 
+            this.worktimeDataGridViewTextBoxColumn.DataPropertyName = "Worktime";
+            this.worktimeDataGridViewTextBoxColumn.HeaderText = "Worktime";
+            this.worktimeDataGridViewTextBoxColumn.Name = "worktimeDataGridViewTextBoxColumn";
+            this.worktimeDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // frmLOGEXCEPTION
             // 
@@ -332,14 +345,15 @@
         private System.Windows.Forms.CheckBox chkWORKTIME;
         private System.Windows.Forms.BindingSource logExceptionBindingSource;
         private System.Windows.Forms.DataGridViewTextBoxColumn dateDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn gvCARDHOLDER;
-        private System.Windows.Forms.DataGridViewTextBoxColumn LogExceptionDate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn worktimeDataGridViewTextBoxColumn;
         private System.Windows.Forms.Button btnWorkerpresence;
         private System.Windows.Forms.DataGridView dgLogDetails;
         private System.Windows.Forms.BindingSource accessLogBindingSource;
         private System.Windows.Forms.DataGridViewTextBoxColumn direction;
         private System.Windows.Forms.DataGridViewTextBoxColumn localTime;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn gvCARDHOLDER;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ExcIN_OUT;
+        private System.Windows.Forms.DataGridViewTextBoxColumn LogExceptionDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn worktimeDataGridViewTextBoxColumn;
     }
 }
